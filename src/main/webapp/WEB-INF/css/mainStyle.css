@@ -1,0 +1,16 @@
+#header{
+    height: 200px;
+}
+.sideBar {
+    margin: 0;
+    padding: 5px;
+
+}
+#footer{
+    height: 50px;
+}
+
+.dropdown-menu {
+
+    width: 230px;
+}

@@ -71,7 +71,14 @@
                   <td>${patient.patientSex}</td>
                   <td>${patient.phoneNumber}</td>
                   <td><a href="<c:url value="/do/createAdministration/drug?patientCode=${patient.patientCode}"/> ">${SendDrug}</a></td>
-                  <td><a href="<c:url value="/do/createAdverseEvent/create?patientCode=${patient.patientCode}"/> ">${Send} ${adverseEvent}</a> </td>
+                  <c:choose>
+                      <c:when test="${patient.patientCode!=null}">
+                          <td><a href="<c:url value="/do/createAdverseEvent/create?patientCode=${patient.patientCode}"/> ">${Send} ${adverseEvent}</a> </td>
+                      </c:when>
+                      <c:otherwise>
+                          <td><a href="#"/>${Send} ${adverseEvent}</a> </td>
+                      </c:otherwise>
+                  </c:choose>
               </tr>
           </tbody>
       </table>

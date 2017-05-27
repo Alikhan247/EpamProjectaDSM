@@ -50,6 +50,7 @@ public class SecurityFilter implements Filter {
         PATIENT_PAGES.add("/patientHomePage");
         PATIENT_PAGES.add("/patientEventDetails");
         PATIENT_PAGES.add("/event/details");
+        PATIENT_PAGES.add("/createAdverseEvent");
         LOG.info("Patient pages access initialized");
 
     }
@@ -73,7 +74,7 @@ public class SecurityFilter implements Filter {
         }
         for(String doctorPage:DOCTOR_PAGES){
             if(path.startsWith(doctorPage)){
-                if(request.getSession().getAttribute(ROLE).equals("doctor")){
+                if(request.getSession().getAttribute(ROLE).equals("doctor") || (doctorPage.equals("/event/details") && request.getSession().getAttribute(ROLE).equals("patient"))){
                     filterChain.doFilter(request,response);
                     return;
                 }else {
@@ -85,7 +86,7 @@ public class SecurityFilter implements Filter {
         }
         for(String chemisterPage : CHEMISTER_PAGES){
             if(path.startsWith(chemisterPage)){
-                if(request.getSession().getAttribute(ROLE).equals("drug delivery")){
+                if(request.getSession().getAttribute(ROLE).equals("drug delivery") || (chemisterPage.equals("/createAdverseEvent/") && request.getSession().getAttribute(ROLE).equals("patient"))){
                     filterChain.doFilter(request,response);
                     return;
                 }else {

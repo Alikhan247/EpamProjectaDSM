@@ -85,7 +85,7 @@
             <c:if test="${role.equals('patient')}">
                 <div class="dropdown-menu" style="display: block; position: static">
                     <a class="dropdown-item" href="#">${Hello}, ${sessionScope.patientCode}!</a>
-                    <a class="dropdown-item" href="${patient_home_url}">${Hello}</a>
+                    <a class="dropdown-item" href="${patient_home_url}">${Home}</a>
                     <a class="dropdown-item" href="${createAdverseEvent_url}">${CreateAdverseEvent}</a>
                     <form action="${signOut_url}" method="post">
                         <button type="submit" class="btn btn-primary">${SignOut}</button>

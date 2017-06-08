@@ -14,12 +14,10 @@ public class EncoderFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         code = filterConfig.getInitParameter("encode");
-
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
         String codeReq = servletRequest.getCharacterEncoding();
         if (code != null && !code.equalsIgnoreCase(codeReq)) {
             servletRequest.setCharacterEncoding(code);

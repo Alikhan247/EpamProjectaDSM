@@ -20,18 +20,14 @@ import static com.epam.adsm.action.ActionConstants.*;
  */
 
 
-
 public class FrontController extends HttpServlet {
-
     private static final Logger LOG = LoggerFactory.getLogger(FrontController.class);
-
     private ActionFactory actionFactory;
 
     @Override
     public void init() throws ServletException {
         LOG.info("Servlet is working");
         actionFactory = new ActionFactory();
-
     }
 
     @Override
@@ -39,10 +35,10 @@ public class FrontController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         Action action = actionFactory.getAction(req);
         ActionResult result = action.execute(req, resp);
-        doForwardOrRederict(result,req,resp);
+        doForwardOrRederict(result, req, resp);
     }
 
-    private void doForwardOrRederict(ActionResult result , HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void doForwardOrRederict(ActionResult result, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (result.isRedirect()) {
             response.sendRedirect(result.getPage());
         } else {
@@ -51,5 +47,4 @@ public class FrontController extends HttpServlet {
             request.getRequestDispatcher(path).forward(request, response);
         }
     }
-
 }

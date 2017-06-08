@@ -58,7 +58,7 @@ public class ChemisterService {
             drugAdministraionDao.createDrugAdministration(drugAdministration);
             daoFactory.commitTransaction();
         } catch (DaoException e) {
-            LOG.error("Cannot create drug administration from drugAdministraionDao", e);
+            LOG.error("Cannot create drug administration from drugAdministrationDao", e);
             throw new ServiceExeption("Cannot create drugAdministration from drugAdministrationDao", e);
         }
     }
@@ -70,7 +70,8 @@ public class ChemisterService {
             adverseEventDao.create(adverseEvent);
             daoFactory.commitTransaction();
         } catch (DaoException e) {
-            throw new ServiceExeption("Cannot createDrugAdministration dao for adverse event", e);
+            LOG.error("cannot create adverse event from adverse event dao", e);
+            throw new ServiceExeption("Cannot create adverse event from dao", e);
         }
     }
 

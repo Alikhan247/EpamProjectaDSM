@@ -51,7 +51,6 @@ public class SecurityFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String path = request.getPathInfo();
-
         for (String coordinatorPage : COORDINATOR_PAGES) {
             if (path.startsWith(coordinatorPage)) {
                 if (request.getSession().getAttribute(ROLE).equals("coordinator")) {

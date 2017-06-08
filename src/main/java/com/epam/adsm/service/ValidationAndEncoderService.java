@@ -34,5 +34,4 @@ public class ValidationAndEncoderService {
         Matcher matcher = pattern.matcher(value);
         return matcher.matches();
     }
-
 }

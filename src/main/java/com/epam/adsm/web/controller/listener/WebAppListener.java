@@ -13,7 +13,7 @@ import javax.servlet.ServletContextListener;
  * Created by akmatleu on 18.05.17.
  */
 
-public class WebAppListener implements ServletContextListener{
+public class WebAppListener implements ServletContextListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebAppListener.class);
 
@@ -22,7 +22,7 @@ public class WebAppListener implements ServletContextListener{
         ServletContext servletContext = servletContextEvent.getServletContext();
         ConnectionPool connectionPool = new ConnectionPool();
         ConnectionPool.InstanceHolder.setInstance(connectionPool);
-        servletContext.setAttribute("pool",connectionPool);
+        servletContext.setAttribute("pool", connectionPool);
         LOG.info("Connection pool ready");
     }
 
@@ -30,10 +30,10 @@ public class WebAppListener implements ServletContextListener{
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         ServletContext servletContext = servletContextEvent.getServletContext();
         ConnectionPool connectionPool = (ConnectionPool) servletContext.getAttribute("pool");
-        try{
+        try {
             connectionPool.close();
-        }catch (ConnectionPoolException e) {
-            LOG.error("Cannot close connections in pool",e);
+        } catch (ConnectionPoolException e) {
+            LOG.error("Cannot close connections in pool", e);
         }
 
 

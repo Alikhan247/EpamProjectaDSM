@@ -21,6 +21,7 @@ import static com.epam.adsm.action.ActionConstants.*;
  */
 public class ShowPatientHomeAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(ShowPatientHomeAction.class);
+
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
         List<Event> events;
@@ -29,11 +30,10 @@ public class ShowPatientHomeAction implements Action {
             HttpSession session = request.getSession();
             String patientCode = String.valueOf(session.getAttribute(PATIENT_CODE));
             events = patientService.getAllPatientEvents(patientCode);
-            request.setAttribute(PATIENT_EVENTS,events);
-        }catch (ServiceExeption e){
-            LOG.error("Cannot ged events from patient service",e);
+            request.setAttribute(PATIENT_EVENTS, events);
+        } catch (ServiceExeption e) {
+            LOG.error("Cannot get events from patient service", e);
         }
-
-        return new  ActionResult(HOME_PAGE);
+        return new ActionResult(HOME_PAGE);
     }
 }

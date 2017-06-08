@@ -27,9 +27,6 @@ public class CreatePatientAction implements Action {
         try {
             CordinatorService cordinatorService = new CordinatorService();
             List<Staff> doctors = cordinatorService.getAllDoctors();
-            for (Staff staff : doctors){
-                LOG.info(staff.toString());
-            }
             request.setAttribute(DOCTORS, doctors);
             DiagnosisDate diagnosisDate = cordinatorService.getDiagnosisDate();
             List<String> clinicalForms = diagnosisDate.getClinicalForm();
@@ -39,15 +36,17 @@ public class CreatePatientAction implements Action {
             List<String> prevalences = diagnosisDate.getReleavences();
             List<String> mbtStatuses = diagnosisDate.getMbtStatus();
             List<String> patientTypes = diagnosisDate.getTypePatient();
-            request.setAttribute(RISK_FACTORS,riskFactors);
-            request.setAttribute(CLINICAL_FORMS,clinicalForms);
-            request.setAttribute(DSTS_STATUS,dstsStatus);
-            request.setAttribute(LOCALIZATIONS,localizations);
-            request.setAttribute(PREVALENCES,prevalences);
-            request.setAttribute(MBT_STATUSES,mbtStatuses);
-            request.setAttribute(PATIENTTYPES,patientTypes);
+            List<String> genders = diagnosisDate.getGender();
+            request.setAttribute(RISK_FACTORS, riskFactors);
+            request.setAttribute(CLINICAL_FORMS, clinicalForms);
+            request.setAttribute(DSTS_STATUS, dstsStatus);
+            request.setAttribute(LOCALIZATIONS, localizations);
+            request.setAttribute(PREVALENCES, prevalences);
+            request.setAttribute(MBT_STATUSES, mbtStatuses);
+            request.setAttribute(PATIENTTYPES, patientTypes);
+            request.setAttribute(GENDERS,genders);
         } catch (ServiceExeption e) {
-            LOG.error("Cannot get list of Doctors ", e);
+            LOG.error("Cannot get list of Doctors or diagnosis date from service", e);
         }
         return new ActionResult(CREATE_PATIENT_PAGE);
     }

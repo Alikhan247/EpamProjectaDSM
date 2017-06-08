@@ -11,8 +11,6 @@ abstract class Person extends BaseEntity {
     private String email;
     private String phoneNumber;
 
-
-
     public String getName() {
         return name;
     }
@@ -53,15 +51,4 @@ abstract class Person extends BaseEntity {
         this.phoneNumber = phoneNumber;
     }
 
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
-    }
 }

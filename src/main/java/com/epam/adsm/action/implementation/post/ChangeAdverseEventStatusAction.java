@@ -18,22 +18,21 @@ import static com.epam.adsm.action.ActionConstants.*;
  * Created by akmatleu on 25.05.17.
  */
 public class ChangeAdverseEventStatusAction implements Action {
-    Logger LOG = LoggerFactory.getLogger(ChangeAdverseEventStatusAction.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ChangeAdverseEventStatusAction.class);
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
-
+        boolean isRedirect = true;
         AdverseEvent adverseEvent = new AdverseEvent();
-
         String adverseEventId = request.getParameter(ADVERSE_EVENT_ID);
         adverseEvent.setId(Integer.parseInt(adverseEventId));
         adverseEvent.setAdverseStatus(request.getParameter(ADVERSE_EVENT_STATUS));
         DoctorService doctorService = new DoctorService();
-        try{
+        try {
             doctorService.updateAdverseEventStatus(adverseEvent);
-        }catch (ServiceExeption e){
-         LOG.error("Cannot update adverse event status",e);
+        } catch (ServiceExeption e) {
+            LOG.error("Cannot update adverse event status from service", e);
         }
-        return new ActionResult(DOCTOR_PATIENTS_ADVERSE_PAGE,true);
+        return new ActionResult(DOCTOR_PATIENTS_ADVERSE_PAGE, isRedirect);
     }
 }

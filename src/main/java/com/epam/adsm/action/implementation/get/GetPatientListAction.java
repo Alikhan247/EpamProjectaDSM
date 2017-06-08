@@ -34,8 +34,6 @@ public class GetPatientListAction implements Action {
         List<Research> researchList;
         List<Patient> doctorPatients;
         PatientService patientService = new PatientService();
-
-
         try {
             HttpSession session = request.getSession();
             if (session.getAttribute(ROLE).equals(COORDINATOR)) {
@@ -50,7 +48,6 @@ public class GetPatientListAction implements Action {
                 Staff doctor = new Staff();
                 patientList = new ArrayList<>();
                 diagnosisList = new ArrayList<>();
-
                 String doctorId = String.valueOf(session.getAttribute(STAFF_ID));
                 doctor.setId(Integer.parseInt(doctorId));
                 DoctorService doctorService = new DoctorService();
@@ -59,14 +56,12 @@ public class GetPatientListAction implements Action {
                     patientList.add(patient);
                     diagnosisList.add(patient.getDiagnosis());
                 }
-
                 request.setAttribute(ALL_PATIENTS, patientList);
                 request.setAttribute(ALL_DIAGNOSIS, diagnosisList);
             }
         } catch (ServiceExeption e) {
-            LOG.error("cannot get staff list from service", e);
+            LOG.error("cannot get patient list from service", e);
         }
-
         return new ActionResult(DOCTOR_PATIENTS_PAGE);
     }
 }

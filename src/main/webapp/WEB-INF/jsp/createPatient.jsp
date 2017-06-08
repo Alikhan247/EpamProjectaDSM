@@ -3,10 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
-
 <c:url var="createPatient_url" value="/do/createPatient"/>
-
-
 <fmt:bundle basename="i18n">
     <fmt:message key="patient.Enrollmentdate" var="EnrollmentDate"/>
     <fmt:message key="patient.AccountDetails" var="AccountDetails"/>
@@ -14,6 +11,7 @@
     <fmt:message key="patient.Initial" var="Initial"/>
     <fmt:message key="person.Password" var="Password"/>
     <fmt:message key="person.RepeatPassword" var="RepeatPassword"/>
+    <fmt:message key="person.Email" var="Email"/>
     <fmt:message key="patient.PersonalDate" var="PersonalDate"/>
     <fmt:message key="patient.DateOfBirthday" var="DateOfBirthDay"/>
     <fmt:message key="person.Telephone" var="Telephone"/>
@@ -28,18 +26,34 @@
     <fmt:message key="patient.ClinicalForm" var="ClinicalForm"/>
     <fmt:message key="patient.Doctor" var="Doctor"/>
     <fmt:message key="btn.Registraion" var="Registraion"/>
+    <fmt:message key="error.null" var="errorNullFields"/>
+    <fmt:message key="error.password" var="errorPasswords"/>
+    <fmt:message key="error.phone" var="errorPhone"/>
 </fmt:bundle>
-
-
-
 <mytag:mainPattern role="${sessionScope.role}">
     <div class="container col-md-6" id="createPatientFrom">
+        <c:if test="${not empty error}">
+            <div class="alert alert-danger" role="alert">
+                <c:choose>
+                    <c:when test="${error.equals('errorNull')}">
+                        <strong>${errorNullFields}</strong>
+                    </c:when>
+                    <c:when test="${error.equals('errorPhoneExist')}">
+                        <strong>${errorPhone}</strong>
+                    </c:when>
+                    <c:otherwise>
+                        <strong>${errorPasswords}</strong>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </c:if>
         <form method="post" action="${createPatient_url}">
             <h3>${EnrollmentDate}</h3>
             <div class="form-group row">
                 <label for="example-date-input" class="col-2 col-form-label">${EnrollmentDate}</label>
                 <div class="col-10">
-                    <input class="form-control" type="date" value="2011-08-19" id="enrollmentDate" name="enrollmentDate">
+                    <input class="form-control" type="date" value="2011-08-19" id="enrollmentDate"
+                           name="enrollmentDate">
                 </div>
             </div>
             <h3>${AccountDetails}</h3>
@@ -61,18 +75,19 @@
             </div>
             <h3>${PersonalDate}</h3>
             <div class="form-group row">
-                <label>E-mail</label>
+                <label>${Email}</label>
                 <input type="email" name="email">
             </div>
             <div class="form-group row">
                 <label for="example-date-input" class="col-2 col-form-label">${DateOfBirthDay}</label>
                 <div class="col-10">
-                    <input class="form-control" type="date" value="2011-08-19" id="example-date-input" name="dateBirthday">
+                    <input class="form-control" type="date" value="2011-08-19" id="example-date-input"
+                           name="dateBirthday">
                 </div>
             </div>
             <div class="form-group row">
                 <label>${Telephone}</label>
-                <input  type="tel" value="" name="phone">
+                <input type="tel" value="" name="phone">
             </div>
             <div class="form-group row">
                 <label>${RiskFactor}</label>
@@ -86,14 +101,16 @@
             <div class="form-group row">
                 <label>${Gender}</label>
                 <select class="form-control form-control-lg" name="gender">
-                    <option>Мужчина</option>
-                    <option>Женщина</option>
+                    <option disabled></option>
+                    <c:forEach items="${genders}" var="gender">
+                        <option>${gender}</option>
+                    </c:forEach>
                 </select>
             </div>
             <h3>${DiagnosisPatient}</h3>
             <div class="form-group row">
                 <label>${Localization}</label>
-                <select  name="localization" class="form-control input-md">
+                <select name="localization" class="form-control input-md">
                     <option disabled></option>
                     <c:forEach items="${localizatoins}" var="localization">
                         <option>${localization}</option>
@@ -102,7 +119,7 @@
             </div>
             <div class="form-group row">
                 <label>${Prevalence}</label>
-                <select  name="prevalence" class="form-control input-md">
+                <select name="prevalence" class="form-control input-md">
                     <option disabled></option>
                     <c:forEach items="${prevalences}" var="prevalence">
                         <option>${prevalence}</option>
@@ -120,7 +137,7 @@
             </div>
             <div class="form-group row">
                 <label>${MBT}</label>
-                <select  name="mbtStatus" class="form-control input-md">
+                <select name="mbtStatus" class="form-control input-md">
                     <option disabled></option>
                     <c:forEach items="${mbtStatuses}" var="mbtStatus">
                         <option>${mbtStatus}</option>
@@ -129,7 +146,7 @@
             </div>
             <div class="form-group row">
                 <label>${TypePatient}</label>
-                <select  name="patientType" class="form-control input-md">
+                <select name="patientType" class="form-control input-md">
                     <option disabled></option>
                     <c:forEach items="${patientTypes}" var="patientType">
                         <option>${patientType}</option>
@@ -146,13 +163,13 @@
                 </select>
             </div>
             <div class="form-group">
-                    <label> ${Doctor} </label>
-                    <select id="staff_id" name="staff_id" class="form-control input-md">
-                        <option disabled></option>
-                        <c:forEach items="${doctors}" var="doctor">
-                            <option value="${doctor.id}">${doctor.name}</option>
-                        </c:forEach>
-                    </select>
+                <label> ${Doctor} </label>
+                <select id="staff_id" name="staff_id" class="form-control input-md">
+                    <option disabled></option>
+                    <c:forEach items="${doctors}" var="doctor">
+                        <option value="${doctor.id}">${doctor.name}</option>
+                    </c:forEach>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">${Registraion}</button>
         </form>

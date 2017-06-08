@@ -18,11 +18,11 @@ import static com.epam.adsm.action.ActionConstants.*;
  * Created by akmatleu on 25.05.17.
  */
 public class LocaleLanguageAction implements Action {
-
     private static final Logger LOG = LoggerFactory.getLogger(LocaleLanguageAction.class);
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
+        boolean isRedirect = true;
         String language = request.getParameter(LANG);
         Config.set(request.getSession(), Config.FMT_LOCALE, new Locale(language));
         Cookie cookie = new Cookie(LANG, language);
@@ -33,6 +33,6 @@ public class LocaleLanguageAction implements Action {
         } catch (UnsupportedEncodingException e) {
             LOG.error("Can't set character encoding" ,e);
         }
-        return new ActionResult(request.getHeader(REFERER), true);
+        return new ActionResult(request.getHeader(REFERER), isRedirect);
     }
 }

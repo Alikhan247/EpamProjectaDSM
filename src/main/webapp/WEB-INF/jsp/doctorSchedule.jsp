@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,10 +10,7 @@
     <fmt:message key="patient.IDcode" var="Idcode"/>
     <fmt:message key="patient.Initial" var="Initial"/>
     <fmt:message key="person.Telephone" var="Telephone"/>
-
 </fmt:bundle>
-
-
 <mytag:mainPattern role="${sessionScope.role}">
     <table class="table table-striped table-bordered table-hover">
         <thead class="thead-default">
@@ -32,7 +28,8 @@
                 <td>${patient.initial}</td>
                 <td>${patient.phoneNumber}</td>
                 <td>${patient.getEventDay().getEventDate()}</td>
-                <td><a href="<c:url value="/do/event/details?id=${patient.getEventDay().getId()}"/> ">${Edit}</a></td>
+                <td><a href="<c:url value="/do/event/details?eventId=${patient.getEventDay().getId()}"/> ">${Edit}</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

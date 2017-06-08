@@ -24,31 +24,24 @@ public class ShowEventDetails implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
-
-
         Event event;
         List<String> tasksName;
         List<Integer> tasksProgress;
         List<Integer> tasksId;
-
-        HttpSession session = request.getSession();
-        String patientCode = String.valueOf(session.getAttribute(PATIENT_CODE));
-        int eventId = Integer.parseInt(request.getParameter("id"));
-
+        int eventId = Integer.parseInt(request.getParameter(EVENT_ID));
         PatientService patientService = new PatientService();
-        try{
+        try {
             event = patientService.getEventById(eventId);
             tasksName = event.getTasksName();
             tasksProgress = event.getTaskProgress();
             tasksId = event.getTaskId();
-            request.setAttribute(EVENT_ID,eventId);
-            request.setAttribute(TASKS_NAME,tasksName);
-            request.setAttribute(TASKS_PROGRESS,tasksProgress);
-            request.setAttribute(TASKS_ID,tasksId);
-        }catch (ServiceExeption e){
-            LOG.error("Cannot take event details from events",e);
+            request.setAttribute(EVENT_ID, eventId);
+            request.setAttribute(TASKS_NAME, tasksName);
+            request.setAttribute(TASKS_PROGRESS, tasksProgress);
+            request.setAttribute(TASKS_ID, tasksId);
+        } catch (ServiceExeption e) {
+            LOG.error("Cannot take event details from events", e);
         }
-
         return new ActionResult(DETAIL_EVENT_PAGE);
     }
 }

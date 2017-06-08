@@ -14,14 +14,12 @@ import static com.epam.adsm.action.ActionConstants.*;
  * Created by akmatleu on 17.05.17.
  */
 public class ActionFactory {
-
     private  Map<String,Action> actionMap;
 
     private void init() {
         actionMap = new HashMap<>();
-
         actionMap.put("GET/login", new ShowPageAction(LOGIN_PAGE));
-        actionMap.put("GET/createStaff", new ShowPageAction(CREATE_STAFF_PAGE));
+        actionMap.put("GET/createStaff", new ShowCreateStaffAction());
         actionMap.put("GET/homePage", new ShowPageAction(HOME_PAGE));
         actionMap.put("GET/createPatient",new CreatePatientAction());
         actionMap.put("GET/getStaffList",new GetStaffListAction());
@@ -32,7 +30,7 @@ public class ActionFactory {
         actionMap.put("GET/createReceipt", new ShowRecieptAction());
         actionMap.put("GET/createDrugAdministration",new ShowPageAction(DRUG_ADMINISTRATION_PAGE));
         actionMap.put("GET/createAdministration/drug",new ShowDrugAdminAction());
-        actionMap.put("GET/createAdverseEvent/create",new ShowAdverseAction());
+        actionMap.put("GET/createAdverseEvent/create",new ShowPageAction(ADVERSE_EVENT_PAGE));
         actionMap.put("GET/createAdverseEvent",new ShowPageAction(ADVERSE_EVENT_PAGE));
         actionMap.put("GET/patientHomePage",new ShowPatientHomeAction());
         actionMap.put("GET/patientEventDetails",new ShowPageAction(DETAIL_EVENT_PAGE));
@@ -41,7 +39,7 @@ public class ActionFactory {
         actionMap.put("GET/getMyPatients",new GetPatientListAction());
         actionMap.put("GET/getMyPatientsAdverse",new ShowDoctorPatientsAdverseAction());
         actionMap.put("GET/set-languageLocale",new LocaleLanguageAction());
-
+        actionMap.put("GET/staff/set-languageLocale",new LocaleLanguageAction());
 
         actionMap.put("POST/createStaff", new CreateStaffAction());
         actionMap.put("POST/login", new SignInAction());

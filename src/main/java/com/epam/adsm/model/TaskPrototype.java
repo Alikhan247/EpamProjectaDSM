@@ -5,28 +5,6 @@ package com.epam.adsm.model;
  */
 public class TaskPrototype extends BaseEntity {
 
-
-    private String taskPrototypeName;
-
-    public TaskPrototype(String taskPrototypeName) {
-        this.taskPrototypeName = taskPrototypeName;
-    }
-
     public TaskPrototype() {}
 
-
-    public String getTaskPrototypeName() {
-        return taskPrototypeName;
-    }
-
-    public void setTaskPrototypeName(String taskPrototypeName) {
-        this.taskPrototypeName = taskPrototypeName;
-    }
-
-    @Override
-    public String toString() {
-        return "TaskPrototype{" +
-                ", taskPrototypeName='" + taskPrototypeName + '\'' +
-                '}';
-    }
 }

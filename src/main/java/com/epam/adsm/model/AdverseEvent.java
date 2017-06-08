@@ -8,7 +8,7 @@ import java.sql.Date;
 /**
  * Created by akmatleu on 13.05.17.
  */
-public class AdverseEvent extends BaseEntity{
+public class AdverseEvent extends BaseEntity {
 
     private String adverseName;
     private java.time.LocalDate adverseDate;
@@ -19,9 +19,8 @@ public class AdverseEvent extends BaseEntity{
     private Patient patient;
     private String adverseStatus;
 
-
-    public AdverseEvent() {}
-
+    public AdverseEvent() {
+    }
 
     public String getAdverseName() {
         return adverseName;
@@ -87,16 +86,4 @@ public class AdverseEvent extends BaseEntity{
         this.adverseStatus = adverseStatus;
     }
 
-
-    @Override
-    public String toString() {
-        return "AdverseEvent{" +
-                ", adverseName='" + adverseName + '\'' +
-                ", adverseDate=" + adverseDate +
-                ", adverseComment='" + adverseComment + '\'' +
-                ", adverseAlcohol=" + adverseAlcohol +
-                ", adverseDrug=" + adverseDrug +
-                ", adverseStatus='" + adverseStatus + '\'' +
-                '}';
-    }
 }

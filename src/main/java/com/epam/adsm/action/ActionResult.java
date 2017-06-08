@@ -15,9 +15,7 @@ public class ActionResult {
 
     public ActionResult(String page) {
         this.page = page;
-        //this.redirect = false;
     }
-
     public String getPage() {
         return page;
     }

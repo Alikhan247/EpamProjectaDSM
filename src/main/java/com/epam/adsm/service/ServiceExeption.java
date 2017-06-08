@@ -11,11 +11,11 @@ public class ServiceExeption extends Exception {
 
     public ServiceExeption(Exception e) {
         super(e);
-        LOG.error("Catch service exception",e);
+        LOG.error("Catch service exception", e);
     }
 
-    public ServiceExeption(String message,Exception e) {
-        super(message,e);
-        LOG.error(message,e);
+    public ServiceExeption(String message, Exception e) {
+        super(message, e);
+        LOG.error(message, e);
     }
 }

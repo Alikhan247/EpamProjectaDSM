@@ -12,9 +12,14 @@ public class DiagnosisDate {
     private List<String> clinicalForm = new ArrayList<>();
     private List<String> typePatient = new ArrayList<>();
     private List<String> dstStatus = new ArrayList<>();
-    List<String> localizations = new ArrayList<>();
-    List<String> releavences = new ArrayList<>();
-    List<String> mbtStatus = new ArrayList<>();
+    private List<String> localizations = new ArrayList<>();
+    private List<String> releavences = new ArrayList<>();
+    private List<String> mbtStatus = new ArrayList<>();
+    private List<String> administrationOption = new ArrayList<>();
+    private List<String> gender = new ArrayList<>();
+    private List<String> roleOption = new ArrayList<>();
+    private List<String> adverseStatusOption = new ArrayList<>();
+    private List<String> activationStatusOption = new ArrayList<>();
 
     public DiagnosisDate(){}
 
@@ -72,5 +77,45 @@ public class DiagnosisDate {
 
     public void setDstStatus(List<String> dstStatus) {
         this.dstStatus = dstStatus;
+    }
+
+    public List<String> getAdministrationOption() {
+        return administrationOption;
+    }
+
+    public void setAdministrationOption(List<String> administrationOption) {
+        this.administrationOption = administrationOption;
+    }
+
+    public List<String> getGender() {
+        return gender;
+    }
+
+    public void setGender(List<String> gender) {
+        this.gender = gender;
+    }
+
+    public List<String> getRoleOption() {
+        return roleOption;
+    }
+
+    public void setRoleOption(List<String> roleOption) {
+        this.roleOption = roleOption;
+    }
+
+    public List<String> getAdverseStatusOption() {
+        return adverseStatusOption;
+    }
+
+    public void setAdverseStatusOption(List<String> adverseStatusOption) {
+        this.adverseStatusOption = adverseStatusOption;
+    }
+
+    public List<String> getActivationStatusOption() {
+        return activationStatusOption;
+    }
+
+    public void setActivationStatusOption(List<String> activationStatusOption) {
+        this.activationStatusOption = activationStatusOption;
     }
 }

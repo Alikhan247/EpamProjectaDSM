@@ -21,22 +21,18 @@ import static com.epam.adsm.action.ActionConstants.*;
  */
 public class FindPatientAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(FindPatientAction.class);
+
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
-
-        Patient patient=null;
+        Patient patient = null;
         String patientCode = request.getParameter(PATIENT_CODE);
         PatientService patientService = new PatientService();
-
-        try{
+        try {
             patient = patientService.findPatientByCode(patientCode);
-
-        }catch (ServiceExeption e){
-            LOG.error("cannot get staff list from service",e);
+        } catch (ServiceExeption e) {
+            LOG.error("Cannot get patient from service", e);
         }
-
-        request.setAttribute(PATIENT,patient);
-
+        request.setAttribute(PATIENT, patient);
         return new ActionResult(HOME_PAGE);
     }
 }

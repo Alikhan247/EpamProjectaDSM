@@ -22,26 +22,21 @@ import static com.epam.adsm.action.ActionConstants.*;
  */
 public class ShowRecieptAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(GetStaffListAction.class);
+
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
-
         List<Drug> drugs = null;
         Patient patient = new Patient();
-
         PatientService patientService = new PatientService();
         ChemisterService chemisterService = new ChemisterService();
-
-        try{
+        try {
             patient = patientService.findPatientByCode(request.getParameter(PATIENT_CODE));
             drugs = chemisterService.getAllDrugs();
-        }catch (ServiceExeption e){
-            LOG.error("cannot get staff list from service",e);
+        } catch (ServiceExeption e) {
+            LOG.error("cannot get all drugs from service", e);
         }
-
-        request.setAttribute(DRUGS,drugs);
-        request.setAttribute(PATIENT,patient);
-
-
+        request.setAttribute(DRUGS, drugs);
+        request.setAttribute(PATIENT, patient);
         return new ActionResult(CREATE_RECEIPT);
     }
 }

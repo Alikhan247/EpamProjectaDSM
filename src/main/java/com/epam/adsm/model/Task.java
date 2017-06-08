@@ -8,8 +8,7 @@ public class Task  extends BaseEntity{
     private Event event;
     private int taskProgress;
 
-    public Task() {
-    }
+    public Task() {}
 
     public TaskPrototype getTaskPrototype() {
         return taskPrototype;
@@ -35,10 +34,4 @@ public class Task  extends BaseEntity{
         this.taskProgress = taskProgress;
     }
 
-    @Override
-    public String toString() {
-        return "Task{" +
-                ", taskProgress=" + taskProgress +
-                '}';
-    }
 }

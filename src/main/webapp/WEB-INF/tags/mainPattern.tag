@@ -87,6 +87,11 @@
                     <a class="dropdown-item" href="#">${Hello}, ${sessionScope.patientCode}!</a>
                     <a class="dropdown-item" href="${patient_home_url}">${Home}</a>
                     <a class="dropdown-item" href="${createAdverseEvent_url}">${CreateAdverseEvent}</a>
+                    <a class="dropdown-item" href="set-languageLocale?lang=en"><img src="${engLogo}"
+                                                                                    width="45" height="50"
+                                                                                    alt="engLogo"></a>
+                    <a class="dropdown-item" href="set-languageLocale?lang=ru"><img src="${ruLogo}"
+                                                                                    width="45" height="50" alt="ruLogo"></a>
                     <form action="${signOut_url}" method="post">
                         <button type="submit" class="btn btn-primary">${SignOut}</button>
                     </form>
@@ -96,6 +101,11 @@
                 <div class="dropdown-menu" style="display: block; position: static">
                     <a class="dropdown-item" href="#">${Hello}, ${sessionScope.name}!</a>
                     <a class="dropdown-item" href="${home_url}">${Home}</a>
+                    <a class="dropdown-item" href="set-languageLocale?lang=en"><img src="${engLogo}"
+                                                                                    width="45" height="50"
+                                                                                    alt="engLogo"></a>
+                    <a class="dropdown-item" href="set-languageLocale?lang=ru"><img src="${ruLogo}"
+                                                                                    width="45" height="50" alt="ruLogo"></a>
                     <form action="${signOut_url}" method="post">
                         <button type="submit" class="btn btn-primary">${SignOut}</button>
                     </form>
@@ -108,6 +118,11 @@
                     <a class="dropdown-item" href="${doctor_schedule_url}">${MySchedule}</a>
                     <a class="dropdown-item" href="${doctor_patients_url}">${ListOfPatients}</a>
                     <a class="dropdown-item" href="${doctor_adverse_url}">${ListOfAdverseEvents}</a>
+                    <a class="dropdown-item" href="set-languageLocale?lang=en"><img src="${engLogo}"
+                                                                                    width="45" height="50"
+                                                                                    alt="engLogo"></a>
+                    <a class="dropdown-item" href="set-languageLocale?lang=ru"><img src="${ruLogo}"
+                                                                                    width="45" height="50" alt="ruLogo"></a>
                     <form action="${signOut_url}" method="post">
                         <button type="submit" class="btn btn-primary">${SignOut}</button>
                     </form>

@@ -1,10 +1,8 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
-
 
 <fmt:bundle basename="i18n">
     <fmt:message key="person.Name" var="name"/>
@@ -17,10 +15,7 @@
     <fmt:message key="patient.Status" var="Status"/>
     <fmt:message key="btn.Edit" var="Edit"/>
 </fmt:bundle>
-
-
 <c:url var="staffList_url" value="/do/getStaffList"/>
-
 <mytag:mainPattern role="${sessionScope.role}">
     <table class="table table-striped table-bordered table-hover">
         <thead class="thead-default">
@@ -47,7 +42,7 @@
                         <td class="table-danger">${staff.activity_status}</td>
                     </c:otherwise>
                 </c:choose>"
-                <td><a href="<c:url value="/do/staff/edit?id=${staff.id}"/>">${Edit}</a></td>
+                <td><a href="<c:url value="/do/staff/edit?staff_id=${staff.id}"/>">${Edit}</a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -14,12 +14,10 @@ public class Patient extends Person {
     private String patientSex;
     private Boolean confirmed;
     private Staff doctor;
-
     private Event eventDay;
     private Diagnosis diagnosis;
 
     public Patient(){}
-
 
     public String getPatientCode() {
         return patientCode;
@@ -85,14 +83,4 @@ public class Patient extends Person {
         this.diagnosis = diagnosis;
     }
 
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "patientCode='" + patientCode + '\'' +
-                ", dateOfBirthday=" + dateOfBirthday +
-                ", initial='" + initial + '\'' +
-                ", patientSex='" + patientSex + '\'' +
-                ", confirmed=" + confirmed +
-                '}';
-    }
 }

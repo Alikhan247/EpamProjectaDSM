@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
 
-
 <fmt:bundle basename="i18n">
     <fmt:message key="patient.IDcode" var="Idcode"/>
     <fmt:message key="patient.Initial" var="Initial"/>
@@ -20,8 +19,6 @@
     <fmt:message key="patient.DiagnosisPatient" var="DiagnosisPatient"/>
     <fmt:message key="patient.ClinicalForm" var="ClinicalForm"/>
 </fmt:bundle>
-
-
 <mytag:mainPattern role="${sessionScope.role}">
     <table class="table table-striped table-bordered table-hover">
         <thead class="thead-default">

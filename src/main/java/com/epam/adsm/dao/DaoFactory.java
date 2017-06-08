@@ -13,18 +13,16 @@ import java.sql.SQLException;
  */
 public class DaoFactory implements AutoCloseable {
 
-    public static final Logger LOG = LoggerFactory.getLogger(DaoFactory.class);
-
+    private static final Logger LOG = LoggerFactory.getLogger(DaoFactory.class);
     private ConnectionPool connectionPool;
     private Connection connection = null;
 
     public DaoFactory() {
         connectionPool = ConnectionPool.getInstance();
-        try{
+        try {
             connection = connectionPool.getConnectionFromPool();
-        }catch (ConnectionPoolException e){
-
-            LOG.error("Cannot det connection from pool",e);
+        } catch (ConnectionPoolException e) {
+            LOG.error("Cannot det connection from pool", e);
         }
     }
 
@@ -34,16 +32,18 @@ public class DaoFactory implements AutoCloseable {
             t = tClass.newInstance();
             t.setConnection(connection);
         } catch (InstantiationException | IllegalAccessException e) {
-            throw new DaoException("Cannot make new instance of Dao",e);
+            LOG.error("Cannot make new instance of Dao", e);
+            throw new DaoException("Cannot make new instance of Dao", e);
         }
-        return  t;
+        return t;
     }
 
     public void startTransaction() throws DaoException {
         try {
             connection.setAutoCommit(false);
         } catch (SQLException e) {
-            throw new DaoException("Cannot start transaction",e);
+            LOG.error("Cannot start transaction", e);
+            throw new DaoException("Cannot start transaction", e);
         }
     }
 
@@ -53,7 +53,8 @@ public class DaoFactory implements AutoCloseable {
             connection.setAutoCommit(true);
             LOG.debug("Commit transaction changes");
         } catch (SQLException e) {
-            throw new DaoException("Cannot commit transaction",e);
+            LOG.error("Cannot commit transaction", e);
+            throw new DaoException("Cannot commit transaction", e);
         }
     }
 
@@ -61,8 +62,9 @@ public class DaoFactory implements AutoCloseable {
         try {
             connection.rollback();
             LOG.debug("Rollback transaction changes");
-        } catch (SQLException e){
-            throw new DaoException("Cannot rollback transaction changes",e);
+        } catch (SQLException e) {
+            LOG.error("Cannot rollback transaction changes", e);
+            throw new DaoException("Cannot rollback transaction changes", e);
         }
     }
 
@@ -70,8 +72,9 @@ public class DaoFactory implements AutoCloseable {
     public void close() throws DaoException {
         try {
             connectionPool.returnConnectionToPool(connection);
-        }catch (ConnectionPoolException e) {
-            throw new DaoException("Cannot return connection to pool",e);
+        } catch (ConnectionPoolException e) {
+            LOG.error("Cannot return connection to pool", e);
+            throw new DaoException("Cannot return connection to pool", e);
         }
     }
 }

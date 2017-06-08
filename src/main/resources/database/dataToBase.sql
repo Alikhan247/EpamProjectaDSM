@@ -109,19 +109,22 @@ INSERT INTO public.event_prototype(
 
 INSERT INTO public.list_date(
             factor_risk, localizatoin, releavence, clinical_form, mbt_status,
-            patient_type, dst_status)
+            patient_type, dst_status , administration_option, gender, role_option,
+            adverse_status_option, activation_status_option)
     VALUES ( 'Контактный', 'Легочный ТБ', 'Односторонний', 'Диссеминированный туберкулез', 'МБТ +',
-            'Новый случай', 'Полирезистентность');
+            'Новый случай', 'Полирезистентность','Приём препарата под контролем','Мужчина','coordinator','Разрешено','Активный');
 INSERT INTO public.list_date(
             factor_risk, localizatoin, releavence, clinical_form, mbt_status,
-            patient_type, dst_status)
+            patient_type, dst_status , administration_option, gender, role_option,
+            adverse_status_option, activation_status_option)
     VALUES ( 'Сахарный диабет', 'Внелегочный', 'Двусторонний', 'Милиарный туберкулез', 'МБТ -',
-            'Неудача лечения', 'МЛУ');
+            'Неудача лечения', 'МЛУ' , 'Выдача препарата на руки','Женщина','doctor','Отложено','Не Активный');
 INSERT INTO public.list_date(
             factor_risk, localizatoin,  clinical_form,
-            patient_type, dst_status)
+            patient_type, dst_status , administration_option, role_option,
+            adverse_status_option)
     VALUES ( 'Наркомания', 'Сочетанный', 'Очаговый(ограниченный) туберкулёз',
-            'Рецидив', 'преШЛУ(иньекционный)');
+            'Рецидив', 'преШЛУ(иньекционный)','Пропуск суточной дозы','drug delivery','Не разрешено');
 INSERT INTO public.list_date(
             factor_risk,   clinical_form,
             patient_type, dst_status)
@@ -1269,3 +1272,7 @@ INSERT INTO public.protocol_events_tasks(
 INSERT INTO public.protocol_events_tasks(
             event_prototype_id, task_prototype_id)
     VALUES (21, 19);
+
+INSERT INTO public.staff(
+            name, surname, phone_number, password, role)
+    VALUES ('John', 'Smith', '0', 'cfcd208495d565ef66e7dff9f98764da', 'coordinator');

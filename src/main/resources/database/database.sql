@@ -4,16 +4,13 @@ CREATE ROLE "epamAdmin" LOGIN
   SUPERUSER INHERIT CREATEDB CREATEROLE REPLICATION;
 
 
-
-
 CREATE DATABASE "epamADSM"
   WITH OWNER = "epamAdmin"
        ENCODING = 'UTF8'
        TABLESPACE = pg_default
-       LC_COLLATE = 'ru_RU.UTF-8'
-       LC_CTYPE = 'ru_RU.UTF-8'
+       LC_COLLATE = 'en_US.UTF-8'
+       LC_CTYPE = 'en_US.UTF-8'
        CONNECTION LIMIT = -1;
-
 
 
 CREATE SEQUENCE public.staff_staff_id_seq
@@ -56,7 +53,6 @@ WITH (
 ALTER TABLE public.staff
   OWNER TO "epamAdmin";
 
-
 -- Table: public.patient
 
 -- DROP TABLE public.patient;
@@ -82,6 +78,33 @@ WITH (
 );
 ALTER TABLE public.patient
   OWNER TO "epamAdmin";
+
+-- Table: public.diagnosis
+
+-- DROP TABLE public.diagnosis;
+
+CREATE TABLE public.diagnosis
+(
+  diagnosis_id integer NOT NULL DEFAULT nextval('diagnosis_diagnosis_id_seq'::regclass),
+  risk_factor character varying(255) NOT NULL,
+  localization_disease character varying(255) NOT NULL,
+  prevalence character varying(255) NOT NULL,
+  clinical_form character varying(255) NOT NULL,
+  mbt_status character varying(255) NOT NULL,
+  patient_type character varying(255) NOT NULL,
+  dst_status character varying(255) NOT NULL,
+  patient_id character varying(50) NOT NULL,
+  CONSTRAINT diagnosis_pkey PRIMARY KEY (diagnosis_id),
+  CONSTRAINT diagnosis_patient_fkey FOREIGN KEY (patient_id)
+      REFERENCES public.patient (patient_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.diagnosis
+  OWNER TO "epamAdmin";
+
 
 -- Table: public.research
 
@@ -138,7 +161,7 @@ CREATE SEQUENCE public.diagnosis_diagnosis_id_seq
   START 7
   CACHE 1;
 ALTER TABLE public.diagnosis_diagnosis_id_seq
-  OWNER TO postgres;
+  OWNER TO "epamAdmin";
 
 
 -- Sequence: public.drug_admin_drug_admin_id_seq
@@ -167,7 +190,7 @@ CREATE SEQUENCE public.drug_drug_id_seq
   START 14
   CACHE 1;
 ALTER TABLE public.drug_drug_id_seq
-  OWNER TO postgres;
+  OWNER TO "epamAdmin";
 
 -- Sequence: public.event_event_id_seq
 
@@ -365,19 +388,19 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE public.drug
-  OWNER TO postgres;
+  OWNER TO "epamAdmin";
 
 
--- Table: public.reciept
+-- Table: public.receipt
 
--- DROP TABLE public.reciept;
+-- DROP TABLE public.receipt;
 
-CREATE TABLE public.reciept
+CREATE TABLE public.receipt
 (
   reciept_id integer NOT NULL DEFAULT nextval('reciept_reciept_id_seq'::regclass),
   patient_id character varying(255) NOT NULL,
   drud_doze double precision NOT NULL,
-  reciept_status boolean NOT NULL DEFAULT true,
+  receipt_status boolean NOT NULL DEFAULT true,
   reciept_date date NOT NULL,
   drug_id integer NOT NULL DEFAULT nextval('reciept_drug_id_seq'::regclass),
   CONSTRAINT reciept_pkey PRIMARY KEY (reciept_id),
@@ -391,7 +414,7 @@ CREATE TABLE public.reciept
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE public.reciept
+ALTER TABLE public.receipt
   OWNER TO "epamAdmin";
 
 
@@ -413,11 +436,9 @@ WITH (
 ALTER TABLE public.protocol_events_tasks
   OWNER TO "epamAdmin";
 
-
 -- Table: public.list_date
 
 -- DROP TABLE public.list_date;
-
 
 CREATE TABLE public.list_date
 (
@@ -429,6 +450,11 @@ CREATE TABLE public.list_date
   mbt_status character varying(255),
   patient_type character varying(255),
   dst_status character varying(255),
+  administration_option character varying(255),
+  gender character varying(255),
+  role_option character varying(255),
+  adverse_status_option character varying(255),
+  activation_status_option character varying(255),
   CONSTRAINT date_list_pk PRIMARY KEY (id)
 )
 WITH (
@@ -436,7 +462,6 @@ WITH (
 );
 ALTER TABLE public.list_date
   OWNER TO "epamAdmin";
-
 
 -- Table: public.drug_administration
 
@@ -454,7 +479,7 @@ CREATE TABLE public.drug_administration
       REFERENCES public.patient (patient_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT drug_administration_reciept_fkey FOREIGN KEY (recepiet_id)
-      REFERENCES public.reciept (reciept_id) MATCH SIMPLE
+      REFERENCES public.receipt (reciept_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (

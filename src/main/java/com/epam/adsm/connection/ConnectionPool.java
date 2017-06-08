@@ -30,8 +30,8 @@ public class ConnectionPool {
             loadProperties();
             loadDriver();
             init();
-        }catch (ConnectionPoolException e){
-            LOG.error("Cannot create new instance of connection pool",e);
+        } catch (ConnectionPoolException e) {
+            LOG.error("Cannot createDrugAdministration new instance of connection pool", e);
         }
     }
 
@@ -49,24 +49,26 @@ public class ConnectionPool {
 
     private void loadProperties() throws ConnectionPoolException {
         Properties properties = new Properties();
-        try{
+        try {
             properties.load(ConnectionPool.class.getClassLoader().getResourceAsStream("database/database.properties"));
             LOG.info("Load property for connect to DB");
         } catch (IOException e) {
-            throw new ConnectionPoolException("Cannot load properties",e);
+            throw new ConnectionPoolException("Cannot load properties", e);
         }
         if (!properties.isEmpty()) {
             LOG.info("Set info about DB to instance");
             setUrl(properties.getProperty("url"));
             setUsername(properties.getProperty("username"));
             setPassword(properties.getProperty("password"));
-        } else  {
+        } else {
             LOG.error("roperty haven't any parameters");
         }
 
     }
 
-    public static ConnectionPool getInstance() { return  InstanceHolder.instance; }
+    public static ConnectionPool getInstance() {
+        return InstanceHolder.instance;
+    }
 
     // Prover nuzhna li ita function
     private void loadDriver() throws ConnectionPoolException {
@@ -75,57 +77,51 @@ public class ConnectionPool {
             Driver driver = new Driver();
             DriverManager.registerDriver(driver);
         } catch (SQLException e) {
-            throw new ConnectionPoolException("Cannot get driver manager",e);
+            throw new ConnectionPoolException("Cannot get driver manager", e);
         }
     }
 
-    private void  init() throws  ConnectionPoolException {
+    private void init() throws ConnectionPoolException {
         try {
-            for (int i = 0 ; i < CONNECTION_POOL_SIZE ; i++ ){
+            for (int i = 0; i < CONNECTION_POOL_SIZE; i++) {
                 Connection connection = createNewConnectionForPool();
                 if (connection != null) {
                     queueConnections.put(connection);
                 }
             }
-        }catch (InterruptedException e) {
-            throw  new ConnectionPoolException("Cannot init connection pool",e);
+        } catch (InterruptedException e) {
+            throw new ConnectionPoolException("Cannot init connection pool", e);
         }
     }
 
     private Connection createNewConnectionForPool() throws ConnectionPoolException {
         Connection connection = null;
-        try
-        {
+        try {
             connection = DriverManager.getConnection(url, username, password);
             LOG.info("Connection successful created");
-        }
-        catch(SQLException e)
-        {
-            throw new ConnectionPoolException("Cannot create new connection for pool",e);
+        } catch (SQLException e) {
+            throw new ConnectionPoolException("Cannot createDrugAdministration new connection for pool", e);
         }
         return connection;
     }
 
-    public  Connection getConnectionFromPool() throws ConnectionPoolException
-    {
+    public Connection getConnectionFromPool() throws ConnectionPoolException {
         Connection connection = null;
         try {
             connection = queueConnections.take();
             LOG.info("Get connection from pool");
         } catch (InterruptedException e) {
-            throw new ConnectionPoolException("Cannot take connection from pool",e);
+            throw new ConnectionPoolException("Cannot take connection from pool", e);
         }
         return connection;
     }
 
-    public  void returnConnectionToPool(Connection connection) throws ConnectionPoolException
-    {
-        //Adding the connection from the client back to the connection pool
+    public void returnConnectionToPool(Connection connection) throws ConnectionPoolException {
         try {
             queueConnections.put(connection);
             LOG.info("Connection back to pool");
         } catch (InterruptedException e) {
-            throw new ConnectionPoolException("Cannot return connection to pool",e);
+            throw new ConnectionPoolException("Cannot return connection to pool", e);
         }
     }
 
@@ -133,13 +129,13 @@ public class ConnectionPool {
         closeAllConnections(queueConnections);
     }
 
-    private void closeAllConnections (BlockingQueue<Connection> connections) throws ConnectionPoolException {
+    private void closeAllConnections(BlockingQueue<Connection> connections) throws ConnectionPoolException {
         for (Connection connection : connections) {
             try {
                 connection.close();
                 LOG.info("Connection was closed");
             } catch (SQLException e) {
-                throw  new ConnectionPoolException("Cannot close connection",e );
+                throw new ConnectionPoolException("Cannot close connection", e);
             }
         }
     }
@@ -148,7 +144,9 @@ public class ConnectionPool {
     public static class InstanceHolder {
         static ConnectionPool instance;
 
-        public static void setInstance(ConnectionPool connectionPool) {instance = connectionPool;}
+        public static void setInstance(ConnectionPool connectionPool) {
+            instance = connectionPool;
+        }
     }
-    
+
 }

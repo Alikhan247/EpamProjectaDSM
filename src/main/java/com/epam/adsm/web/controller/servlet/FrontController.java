@@ -1,4 +1,4 @@
-package com.epam.adsm.webView.servlet;
+package com.epam.adsm.web.controller.servlet;
 
 import com.epam.adsm.action.Action;
 
@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,9 +21,9 @@ import static com.epam.adsm.action.ActionConstants.*;
 
 
 
-public class MyFrontServlet extends HttpServlet {
+public class FrontController extends HttpServlet {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MyFrontServlet.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FrontController.class);
 
     private ActionFactory actionFactory;
 

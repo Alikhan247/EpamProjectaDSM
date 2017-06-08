@@ -1,31 +1,23 @@
 package com.epam.adsm.model;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-
-import java.sql.Date;
-
 /**
  * Created by akmatleu on 15.05.17.
  */
-public class DrugAdministration  extends BaseEntity{
+public class DrugAdministration extends BaseEntity {
 
-    private Reciept reciept;
+    private Receipt receipt;
     private Patient patient;
     private String drugStatus;
     private java.time.LocalDate drugAdministraionDate;
-    private String drugAdministaionComment;
-
 
     public DrugAdministration() {}
 
-
-    public Reciept getReciept() {
-        return reciept;
+    public Receipt getReceipt() {
+        return receipt;
     }
 
-    public void setReciept(Reciept reciept) {
-        this.reciept = reciept;
+    public void setReceipt(Receipt receipt) {
+        this.receipt = receipt;
     }
 
     public Patient getPatient() {
@@ -52,20 +44,4 @@ public class DrugAdministration  extends BaseEntity{
         this.drugAdministraionDate = drugAdministraionDate;
     }
 
-    public String getDrugAdministaionComment() {
-        return drugAdministaionComment;
-    }
-
-    public void setDrugAdministaionComment(String drugAdministaionComment) {
-        this.drugAdministaionComment = drugAdministaionComment;
-    }
-
-    @Override
-    public String toString() {
-        return "DrugAdministration{" +
-                ", drugStatus='" + drugStatus + '\'' +
-                ", drugAdministraionDate=" + drugAdministraionDate +
-                ", drugAdministaionComment='" + drugAdministaionComment + '\'' +
-                '}';
-    }
 }

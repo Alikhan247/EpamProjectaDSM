@@ -2,8 +2,8 @@ package com.epam.adsm.service;
 
 import com.epam.adsm.dao.DaoException;
 import com.epam.adsm.dao.DaoFactory;
-import com.epam.adsm.dao.implementation.PatientDAO;
-import com.epam.adsm.dao.implementation.StaffDAO;
+import com.epam.adsm.dao.implementation.PatientDao;
+import com.epam.adsm.dao.implementation.StaffDao;
 import com.epam.adsm.model.Patient;
 import com.epam.adsm.model.Staff;
 import org.slf4j.Logger;
@@ -16,35 +16,31 @@ public class PersonService {
 
     private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
 
-
     public Staff findStaffByPhoneAndPassword(String phoneNumber,String password) throws ServiceExeption {
-        Staff staff = null;
+        Staff staff;
         try(DaoFactory daoFactory = new DaoFactory()) {
-            StaffDAO staffDAO = daoFactory.getDao(StaffDAO.class);
+            StaffDao staffDao = daoFactory.getDao(StaffDao.class);
             daoFactory.startTransaction();
-            staff = staffDAO.findByPhoneAndPassword(phoneNumber,password);
+            staff = staffDao.findByPhoneAndPassword(phoneNumber,password);
             daoFactory.commitTransaction();
         }catch (DaoException e) {
-            LOG.info("Cannot find staff  by password and phone number");
+            LOG.error("Cannot find staff  by password and phone number",e);
             throw new ServiceExeption("Cannot find by login and password",e);
         }
         return staff;
     }
 
     public Patient findPatientByPhoneAndPassword(String phoneNumber,String password) throws ServiceExeption {
-        Patient patient = null;
+        Patient patient;
         try(DaoFactory daoFactory = new DaoFactory()) {
-            PatientDAO patientDAO = daoFactory.getDao(PatientDAO.class);
+            PatientDao patientDao = daoFactory.getDao(PatientDao.class);
             daoFactory.startTransaction();
-            patient = patientDAO.findByPhoneAndPassword(phoneNumber,password);
+            patient = patientDao.findByPhoneAndPassword(phoneNumber,password);
             daoFactory.commitTransaction();
         }catch (DaoException e){
-            LOG.info("Cannot find Patient by password and phone number");
+            LOG.error("Cannot find patient by password and phone number",e);
             throw new ServiceExeption("Cannot find by login and password patient",e);
         }
         return patient;
     }
-
-
-
 }

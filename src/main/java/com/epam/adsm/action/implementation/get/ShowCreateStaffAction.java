@@ -3,7 +3,6 @@ package com.epam.adsm.action.implementation.get;
 import com.epam.adsm.action.Action;
 import com.epam.adsm.action.ActionResult;
 import com.epam.adsm.model.DiagnosisDate;
-import com.epam.adsm.model.Staff;
 import com.epam.adsm.service.CordinatorService;
 import com.epam.adsm.service.ServiceExeption;
 import org.slf4j.Logger;
@@ -11,31 +10,26 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.util.List;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
 /**
- * Created by akmatleu on 21.05.17.
+ * Created by akmatleu on 08.06.17.
  */
-public class ShowStaffEditAction implements Action {
-    private static final Logger LOG = LoggerFactory.getLogger(ShowStaffEditAction.class);
+public class ShowCreateStaffAction implements Action {
+    private static final Logger LOG = LoggerFactory.getLogger(ShowCreateStaffAction.class);
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter(STAFF_ID));
-        Staff staff = null;
-        CordinatorService cordinatorService = new CordinatorService();
         try {
-            staff = cordinatorService.findStaffById(id);
+            CordinatorService cordinatorService = new CordinatorService();
             DiagnosisDate diagnosisDate = cordinatorService.getDiagnosisDate();
-            List<String> activaionStatuses = diagnosisDate.getActivationStatusOption();
-            request.setAttribute(ACTIVATION_STATUSES,activaionStatuses);
+            List<String> roleOptions = diagnosisDate.getRoleOption();
+            request.setAttribute(ROLE_OPTIONS, roleOptions);
         } catch (ServiceExeption e) {
-            LOG.error("Cannot find staff with id" + id, e);
+            LOG.error("Cannot get list of Doctors or diagnosis date from service", e);
         }
-        request.setAttribute(STAFF, staff);
-        return new ActionResult(STAFF_EDIT_PAGE);
+        return new ActionResult(CREATE_STAFF_PAGE);
     }
 }

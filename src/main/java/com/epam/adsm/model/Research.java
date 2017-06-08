@@ -1,15 +1,11 @@
 package com.epam.adsm.model;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-
-import java.sql.Date;
-
 /**
  * Created by akmatleu on 13.05.17.
  */
-public class Research extends BaseEntity{
+public class Research extends BaseEntity {
 
+    private static final double PERCENT = 100.0;
     private java.time.LocalDate enrollmentDate;
     private java.time.LocalDate activationDate;
     private Boolean activationStatus;
@@ -45,9 +41,9 @@ public class Research extends BaseEntity{
     }
 
     public void setResearchProgress(double researchProgress) {
-        researchProgress=researchProgress*100;
-        researchProgress=Math.round(researchProgress);
-        researchProgress=researchProgress/100;
+        researchProgress = researchProgress * PERCENT;
+        researchProgress = Math.round(researchProgress);
+        researchProgress = researchProgress / PERCENT;
         this.researchProgress = researchProgress;
     }
 
@@ -59,13 +55,4 @@ public class Research extends BaseEntity{
         this.patient = patient;
     }
 
-    @Override
-    public String toString() {
-        return "Research{" +
-                ", enrollmentDate=" + enrollmentDate +
-                ", activationDate=" + activationDate +
-                ", activationStatus=" + activationStatus +
-                ", researchProgress=" + researchProgress +
-                '}';
-    }
 }

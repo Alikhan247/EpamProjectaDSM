@@ -19,32 +19,25 @@ import static com.epam.adsm.action.ActionConstants.*;
  * Created by akmatleu on 22.05.17.
  */
 public class EditPatientAcion implements Action {
-
     private static final Logger LOG = LoggerFactory.getLogger(EditStaffAction.class);
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
+        boolean isRedirect = true;
         Patient patient = new Patient();
-        Research research = new Research();
-
-        patient.setPatientCode(request.getParameter("id"));
+        Research research;
+        patient.setPatientCode(request.getParameter(PATIENT_CODE));
         patient.setPhoneNumber(request.getParameter(PHONE));
-
-
         PatientService patientService = new PatientService();
         CordinatorService cordinatorService = new CordinatorService();
-
         try {
             patientService.updatePatient(patient);
             research = cordinatorService.findResearchByPatientCode(patient.getPatientCode());
             research.setActivationStatus(Boolean.valueOf(request.getParameter(RESEARCH_STATUS)));
             cordinatorService.updateResearch(research);
-
-        }catch (ServiceExeption e){
-            LOG.error("Cannot update patient with code="+patient.getPatientCode(),e);
+        } catch (ServiceExeption e) {
+            LOG.error("Cannot edit patient with code=" + patient.getPatientCode(), e);
         }
-        return new ActionResult("/do/patient/edit?id="+patient.getPatientCode(),true);
+        return new ActionResult(PATIENT_EDIT_PAGE + patient.getPatientCode(), isRedirect);
     }
-
-
 }

@@ -11,10 +11,7 @@ public class EventPrototype extends BaseEntity {
     private String eventPrototypeName;
     private int eventInterval;
 
-
-
     public EventPrototype() {}
-
 
     public String getEventPrototypeName() {
         return eventPrototypeName;
@@ -32,11 +29,4 @@ public class EventPrototype extends BaseEntity {
         this.eventInterval = eventInterval;
     }
 
-    @Override
-    public String toString() {
-        return "EventPrototype{" +
-                ", eventPrototypeName='" + eventPrototypeName + '\'' +
-                ", eventInterval=" + eventInterval +
-                '}';
-    }
 }

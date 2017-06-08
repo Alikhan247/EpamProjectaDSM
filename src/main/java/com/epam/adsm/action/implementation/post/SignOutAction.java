@@ -15,13 +15,12 @@ import static com.epam.adsm.action.ActionConstants.*;
  * Created by akmatleu on 20.05.17.
  */
 public class SignOutAction implements Action {
-    private static final Logger LOG = LoggerFactory.getLogger(SignOutAction.class);
+
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
+        boolean isRedirect = true;
         HttpSession session = request.getSession();
-        String role = (String) session.getAttribute(ROLE);
-        LOG.info("Person with role = {} sign out.", role);
         session.invalidate();
-        return new ActionResult(LOGIN_PAGE, true);
+        return new ActionResult(LOGIN_PAGE, isRedirect);
     }
 }

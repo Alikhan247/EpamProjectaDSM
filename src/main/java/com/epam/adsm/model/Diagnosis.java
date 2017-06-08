@@ -5,7 +5,6 @@ package com.epam.adsm.model;
  */
 public class Diagnosis  extends  BaseEntity {
 
-
     private String riskFactor;
     private String localizationDisease;
     private String prevalence;
@@ -15,9 +14,7 @@ public class Diagnosis  extends  BaseEntity {
     private String dstStatus;
     private Patient patient;
 
-
     public Diagnosis(){}
-
 
     public String getRiskFactor() {
         return riskFactor;
@@ -83,16 +80,4 @@ public class Diagnosis  extends  BaseEntity {
         this.patient = patient;
     }
 
-    @Override
-    public String toString() {
-        return "Diagnosis{" +
-                ", riskFactor='" + riskFactor + '\'' +
-                ", localizationDisease='" + localizationDisease + '\'' +
-                ", prevalence='" + prevalence + '\'' +
-                ", clinicalForm='" + clinicalForm + '\'' +
-                ", mbtStatus='" + mbtStatus + '\'' +
-                ", patientType='" + patientType + '\'' +
-                ", dstStatus='" + dstStatus + '\'' +
-                '}';
-    }
 }

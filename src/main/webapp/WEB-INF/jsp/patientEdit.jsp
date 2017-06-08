@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,9 +11,8 @@
     <fmt:message key="btn.Edit" var="Edit"/>
 </fmt:bundle>
 
-
 <mytag:mainPattern role="${sessionScope.role}">
-    <div class="container col-md-9" >
+    <div class="container col-md-9">
         <div class="card" style="width: 600px;">
             <div class="card-block">
                 <h4 class="card-title">${patient.patientCode}</h4>
@@ -25,14 +23,14 @@
             <form method="post" action="">
                 <div class="form-group">
                     <div class="form-group row">
-                        <input  type="tel" value="${patient.phoneNumber}" name="phone">
+                        <input type="tel" value="${patient.phoneNumber}" name="phone">
                     </div>
                     <div class="form-group row">
                         <label>${StatusActiv}</label>
                         <select class="form-control form-control-lg" name="activationStatus">
                             <option disabled></option>
-                            <option value="${true}">Активный</option>
-                            <option value="${false}">Не Активный</option>
+                            <option value="${true}">${activaionStatuses[0]}</option>
+                            <option value="${false}">${activaionStatuses[1]}</option>
                         </select>
                     </div>
                 </div>

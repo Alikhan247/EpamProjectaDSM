@@ -1,8 +1,7 @@
-package com.epam.adsm.webView.filter;
+package com.epam.adsm.web.controller.filter;
 
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +14,7 @@ import static com.epam.adsm.action.ActionConstants.LANG;
 /**
  * Created by akmatleu on 25.05.17.
  */
-@WebFilter(filterName = "LocaleFilter", urlPatterns = "/do/*")
+
 public class LocaleFilter implements Filter {
 
     @Override

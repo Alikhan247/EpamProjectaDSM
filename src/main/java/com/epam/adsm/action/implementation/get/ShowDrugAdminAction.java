@@ -2,9 +2,11 @@ package com.epam.adsm.action.implementation.get;
 
 import com.epam.adsm.action.Action;
 import com.epam.adsm.action.ActionResult;
+import com.epam.adsm.model.DiagnosisDate;
 import com.epam.adsm.model.Drug;
-import com.epam.adsm.model.Reciept;
+import com.epam.adsm.model.Receipt;
 import com.epam.adsm.service.ChemisterService;
+import com.epam.adsm.service.CordinatorService;
 import com.epam.adsm.service.ServiceExeption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,24 +27,23 @@ public class ShowDrugAdminAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
-
-        List<Reciept> reciepts = new ArrayList<>();
-        List<Drug> drugs = null;
+        List<Receipt> receipts;
+        List<Drug> drugs;
+        List<String> administrationOptions;
+        CordinatorService cordinatorService = new CordinatorService();
         String patientCode = request.getParameter(PATIENT_CODE);
-        System.out.println(patientCode);
-
         ChemisterService chemisterService = new ChemisterService();
         try {
-            reciepts = chemisterService.getAllRecieptsByPatientCode(patientCode);
+            DiagnosisDate diagnosisDate = cordinatorService.getDiagnosisDate();
+            administrationOptions = diagnosisDate.getAdministrationOption();
+            receipts = chemisterService.getAllRecieptsByPatientCode(patientCode);
             drugs = chemisterService.getAllDrugs();
-
-            request.setAttribute(RECEIPTS, reciepts);
+            request.setAttribute(RECEIPTS, receipts);
             request.setAttribute(DRUGS, drugs);
+            request.setAttribute(ADMINISTRATION_OPTIONS,administrationOptions);
         } catch (ServiceExeption e) {
             LOG.error("Cannot find receipt by patientCode" + patientCode, e);
         }
-
-
         return new ActionResult(DRUG_ADMINISTRATION_PAGE);
     }
 }

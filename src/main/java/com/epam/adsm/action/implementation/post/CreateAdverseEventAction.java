@@ -28,35 +28,27 @@ public class CreateAdverseEventAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
-
         AdverseEvent adverseEvent = new AdverseEvent();
-
         adverseEvent.setAdverseName(request.getParameter(ADVERSE_EVENT));
         Date adverseDate = Date.valueOf(request.getParameter(ADVERSE_DATE));
         adverseEvent.setAdverseDate(adverseDate.toLocalDate());
         adverseEvent.setAdverseComment(request.getParameter(ADVERSE_COMMENT));
         adverseEvent.setAdverseAlcohol(Boolean.valueOf(request.getParameter(ADVERSE_ALCOHOL)));
         adverseEvent.setAdverseDrug(Boolean.valueOf(request.getParameter(ADVERSE_DRUG)));
-
         String patientCode = request.getParameter(PATIENT_CODE);
-
         PatientService patientService = new PatientService();
         ChemisterService chemisterService = new ChemisterService();
-
         Patient patient;
         Staff doctor;
-
-        try{
+        try {
             patient = patientService.findPatientByCode(patientCode);
             doctor = patient.getDoctor();
             adverseEvent.setPatient(patient);
             adverseEvent.setStaff(doctor);
             chemisterService.createAdverseEvent(adverseEvent);
-
-        }catch (ServiceExeption e) {
-         LOG.error("Cannot create adverse event for patient"+patientCode,e);
+        } catch (ServiceExeption e) {
+            LOG.error("Cannot create adverse event for patient " + patientCode + " from service", e);
         }
-
         return new ActionResult(HOME_PAGE);
     }
 }

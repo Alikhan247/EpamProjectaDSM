@@ -27,22 +27,18 @@ public class ShowDoctorScheduleAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
-
         Staff doctor = new Staff();
         List<Patient> patients;
-
         HttpSession session = request.getSession();
         String doctorId = String.valueOf(session.getAttribute(STAFF_ID));
         doctor.setId(Integer.parseInt(doctorId));
         try {
             DoctorService doctorService = new DoctorService();
             patients = doctorService.getDoctorSchedule(doctor);
-
             request.setAttribute(ALL_PATIENTS, patients);
         } catch (ServiceExeption e) {
             LOG.error("Cannot get schedule for doctor" + doctorId, e);
         }
-
         return new ActionResult(DOCTOR_SCHEDULE_PAGE);
     }
 }

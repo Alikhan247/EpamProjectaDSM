@@ -1,10 +1,8 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
-
 
 <fmt:bundle basename="i18n">
     <fmt:message key="patient.Enrollmentdate" var="EnrollmentDate"/>
@@ -31,9 +29,6 @@
     <fmt:message key="patient.ResearchStatus" var="Status"/>
     <fmt:message key="btn.Edit" var="Edit"/>
 </fmt:bundle>
-
-
-
 <mytag:mainPattern role="${sessionScope.role}">
     <table class="table table-striped table-bordered table-hover">
         <thead class="thead-default">
@@ -63,7 +58,7 @@
                 <td>${patient.patientSex}</td>
                 <td>${patient.phoneNumber}</td>
                 <c:forEach items="${diagnosisList}" var="diagnosis">
-                    <c:if test = "${patient.patientCode == diagnosis.getPatient().patientCode}">
+                    <c:if test="${patient.patientCode == diagnosis.getPatient().patientCode}">
                         <td>${diagnosis.riskFactor}</td>
                         <td>${diagnosis.patientType}</td>
                         <td>${diagnosis.clinicalForm}</td>
@@ -86,7 +81,7 @@
                         </c:choose>"
                     </c:if>
                 </c:forEach>
-                <td><a href="<c:url value="/do/patient/edit?id=${patient.patientCode}"/> ">${Edit}</a></td>
+                <td><a href="<c:url value="/do/patient/edit?patientCode=${patient.patientCode}"/> ">${Edit}</a></td>
             </tr>
         </c:forEach>
         </tbody>

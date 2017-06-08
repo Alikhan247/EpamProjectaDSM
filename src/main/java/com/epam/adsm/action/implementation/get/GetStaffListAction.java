@@ -22,19 +22,14 @@ public class GetStaffListAction implements Action {
 
     @Override
     public ActionResult execute(HttpServletRequest request, HttpServletResponse response) {
-
-
-        List<Staff> staffList=null;
+        List<Staff> staffList = null;
         CordinatorService cordinatorService = new CordinatorService();
-
-        try{
-           staffList = cordinatorService.getAllStaff();
-        }catch (ServiceExeption e){
-               LOG.error("cannot get staff list from service",e);
+        try {
+            staffList = cordinatorService.getAllStaff();
+        } catch (ServiceExeption e) {
+            LOG.error("cannot get staff list from service", e);
         }
-
-        request.setAttribute(ALL_STAFF,staffList);
-
+        request.setAttribute(ALL_STAFF, staffList);
         return new ActionResult(GET_ALL_STAFF_PAGE);
     }
 }

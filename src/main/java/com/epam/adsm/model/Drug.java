@@ -9,7 +9,6 @@ public class Drug extends BaseEntity{
 
     public Drug(){}
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -18,11 +17,4 @@ public class Drug extends BaseEntity{
         return name;
     }
 
-
-    @Override
-    public String toString() {
-        return "Drug{" +
-                "name='" + name + '\'' +
-                '}';
-    }
 }

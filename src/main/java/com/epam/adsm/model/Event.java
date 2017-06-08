@@ -15,16 +15,11 @@ public class Event  extends  BaseEntity{
     private double eventProgress;
     private Research research;
     private EventPrototype eventPrototype;
-
     private List<String> tasksName;
     private List<Integer> taskProgress;
     private List<Integer> taskId;
 
-
-
-
     public Event() {}
-
 
     public java.time.LocalDate getEventDate() {
         return eventDate;
@@ -58,7 +53,6 @@ public class Event  extends  BaseEntity{
         this.eventPrototype = eventPrototype;
     }
 
-
     public List<String> getTasksName() {
         return tasksName;
     }
@@ -83,11 +77,4 @@ public class Event  extends  BaseEntity{
         this.taskId = taskId;
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                ", eventDate=" + eventDate +
-                ", eventProgress=" + eventProgress +
-                '}';
-    }
 }

@@ -12,9 +12,7 @@ import java.util.List;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 13.05.17.
- */
+
 public class CordinatorService {
     private static final Logger LOG = LoggerFactory.getLogger(CordinatorService.class);
     private static final int COMPLETE = 100;

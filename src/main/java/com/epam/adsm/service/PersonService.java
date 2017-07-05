@@ -9,9 +9,7 @@ import com.epam.adsm.model.Staff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Created by akmatleu on 19.05.17.
- */
+
 public class PersonService {
 
     private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);

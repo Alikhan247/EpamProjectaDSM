@@ -19,9 +19,6 @@ import java.util.List;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 25.05.17.
- */
 public class ShowDoctorPatientsAdverseAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(ShowDoctorPatientsAdverseAction.class);
 

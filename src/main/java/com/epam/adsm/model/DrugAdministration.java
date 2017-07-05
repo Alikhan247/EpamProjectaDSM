@@ -1,8 +1,5 @@
 package com.epam.adsm.model;
 
-/**
- * Created by akmatleu on 15.05.17.
- */
 public class DrugAdministration extends BaseEntity {
 
     private Receipt receipt;

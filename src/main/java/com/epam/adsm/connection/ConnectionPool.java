@@ -12,17 +12,12 @@ import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-/**
- * Created by akmatleu on 08.05.17.
- */
 public class ConnectionPool {
     private static final Logger LOG = LoggerFactory.getLogger(ConnectionPool.class);
     private static final int CONNECTION_POOL_SIZE = 15;
-
     private String url;
     private String username;
     private String password;
-
     private BlockingQueue<Connection> queueConnections = new ArrayBlockingQueue<>(CONNECTION_POOL_SIZE);
 
     public ConnectionPool() {
@@ -63,14 +58,12 @@ public class ConnectionPool {
         } else {
             LOG.error("roperty haven't any parameters");
         }
-
     }
 
     public static ConnectionPool getInstance() {
         return InstanceHolder.instance;
     }
 
-    // Prover nuzhna li ita function
     private void loadDriver() throws ConnectionPoolException {
         try {
             LOG.info("Create new driver");
@@ -95,18 +88,18 @@ public class ConnectionPool {
     }
 
     private Connection createNewConnectionForPool() throws ConnectionPoolException {
-        Connection connection = null;
+        Connection connection;
         try {
             connection = DriverManager.getConnection(url, username, password);
             LOG.info("Connection successful created");
         } catch (SQLException e) {
-            throw new ConnectionPoolException("Cannot createDrugAdministration new connection for pool", e);
+            throw new ConnectionPoolException("Cannot create new connection for pool", e);
         }
         return connection;
     }
 
     public Connection getConnectionFromPool() throws ConnectionPoolException {
-        Connection connection = null;
+        Connection connection;
         try {
             connection = queueConnections.take();
             LOG.info("Get connection from pool");
@@ -140,7 +133,6 @@ public class ConnectionPool {
         }
     }
 
-
     public static class InstanceHolder {
         static ConnectionPool instance;
 
@@ -148,5 +140,4 @@ public class ConnectionPool {
             instance = connectionPool;
         }
     }
-
 }

@@ -11,16 +11,10 @@ import java.util.Locale;
 
 import static com.epam.adsm.action.ActionConstants.LANG;
 
-/**
- * Created by akmatleu on 25.05.17.
- */
-
 public class LocaleFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
+    public void init(FilterConfig filterConfig) throws ServletException {}
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -39,7 +33,5 @@ public class LocaleFilter implements Filter {
     }
 
     @Override
-    public void destroy() {
-
-    }
+    public void destroy() {}
 }

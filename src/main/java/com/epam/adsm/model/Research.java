@@ -1,8 +1,5 @@
 package com.epam.adsm.model;
 
-/**
- * Created by akmatleu on 13.05.17.
- */
 public class Research extends BaseEntity {
 
     private static final double PERCENT = 100.0;

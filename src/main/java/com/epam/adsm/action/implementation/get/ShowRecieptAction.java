@@ -5,7 +5,6 @@ import com.epam.adsm.action.ActionResult;
 import com.epam.adsm.model.Drug;
 import com.epam.adsm.model.Patient;
 import com.epam.adsm.service.ChemisterService;
-import com.epam.adsm.service.CordinatorService;
 import com.epam.adsm.service.PatientService;
 import com.epam.adsm.service.ServiceExeption;
 import org.slf4j.Logger;
@@ -17,9 +16,6 @@ import java.util.List;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 22.05.17.
- */
 public class ShowRecieptAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(GetStaffListAction.class);
 

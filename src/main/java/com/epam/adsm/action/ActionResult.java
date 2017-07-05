@@ -1,8 +1,5 @@
 package com.epam.adsm.action;
 
-/**
- * Created by akmatleu on 17.05.17.
- */
 public class ActionResult {
 
     private final String page;

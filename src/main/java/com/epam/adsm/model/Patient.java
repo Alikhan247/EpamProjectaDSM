@@ -1,13 +1,8 @@
 package com.epam.adsm.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
-/**
- * Created by akmatleu on 10.05.17.
- */
 public class Patient extends Person {
-
     private String patientCode;
     private LocalDate dateOfBirthday;
     private String initial;

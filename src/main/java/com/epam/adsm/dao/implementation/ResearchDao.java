@@ -14,9 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 13.05.17.
- */
 public class ResearchDao extends Dao implements EntityDao<Research> {
     private static final Logger LOG = LoggerFactory.getLogger(ResearchDao.class);
     private static final String CREATE_RESEARCH = "INSERT INTO public.research(\n" +
@@ -50,11 +47,11 @@ public class ResearchDao extends Dao implements EntityDao<Research> {
 
     public List<Research> getAllResearch() throws DaoException {
         List<Research> researchList = new ArrayList<>();
-        Research research = null;
+        Research research;
         try (PreparedStatement statement = getConnection().prepareStatement(GET_ALL_RESEARCH)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                research = pickResearchFromResultSet(research, resultSet);
+                research = pickResearchFromResultSet(resultSet);
                 researchList.add(research);
             }
             resultSet.close();
@@ -92,7 +89,7 @@ public class ResearchDao extends Dao implements EntityDao<Research> {
             statement.setString(1, patientCode);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                research = pickResearchFromResultSet(research, resultSet);
+                research = pickResearchFromResultSet(resultSet);
             }
             resultSet.close();
         } catch (SQLException e) {
@@ -109,7 +106,7 @@ public class ResearchDao extends Dao implements EntityDao<Research> {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                research = pickResearchFromResultSet(research, resultSet);
+                research = pickResearchFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             LOG.error("Cannot find research by id from database", e);
@@ -141,8 +138,8 @@ public class ResearchDao extends Dao implements EntityDao<Research> {
         }
     }
 
-    private Research pickResearchFromResultSet(Research research, ResultSet resultSet) throws DaoException {
-        research = new Research();
+    private Research pickResearchFromResultSet(ResultSet resultSet) throws DaoException {
+        Research research = new Research();
         Patient patient = new Patient();
         try {
             research.setId(resultSet.getInt(1));

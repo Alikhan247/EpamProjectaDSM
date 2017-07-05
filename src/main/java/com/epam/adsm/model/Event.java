@@ -1,14 +1,7 @@
 package com.epam.adsm.model;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-
-import java.sql.Date;
 import java.util.List;
 
-/**
- * Created by akmatleu on 16.05.17.
- */
 public class Event  extends  BaseEntity{
 
     private java.time.LocalDate eventDate;

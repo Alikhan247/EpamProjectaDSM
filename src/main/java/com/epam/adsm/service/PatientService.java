@@ -9,9 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-/**
- * Created by akmatleu on 21.05.17.
- */
 public class PatientService {
 
     private static final Logger LOG = LoggerFactory.getLogger(CordinatorService.class);

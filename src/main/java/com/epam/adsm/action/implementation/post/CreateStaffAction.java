@@ -19,9 +19,6 @@ import java.util.Properties;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 18.05.17.
- */
 public class CreateStaffAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(CreateStaffAction.class);
     private boolean invalid = false;

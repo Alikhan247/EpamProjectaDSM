@@ -16,9 +16,6 @@ import javax.servlet.http.HttpSession;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 22.05.17.
- */
 public class CreateReceiptAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(CreateReceiptAction.class);
 

@@ -13,9 +13,6 @@ import java.util.List;
 import static com.epam.adsm.action.ActionConstants.LOGIN_PAGE;
 import static com.epam.adsm.action.ActionConstants.ROLE;
 
-/**
- * Created by akmatleu on 27.05.17.
- */
 public class SecurityFilter implements Filter {
     private static final Logger LOG = LoggerFactory.getLogger(SecurityFilter.class);
     private static final List<String> COORDINATOR_PAGES = new ArrayList<>();
@@ -104,6 +101,9 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void destroy() {
-
+       COORDINATOR_PAGES.clear();
+       CHEMISTER_PAGES.clear();
+       DOCTOR_PAGES.clear();
+       PATIENT_PAGES.clear();
     }
 }

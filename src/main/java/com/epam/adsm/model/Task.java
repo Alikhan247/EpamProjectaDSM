@@ -1,8 +1,5 @@
 package com.epam.adsm.model;
 
-/**
- * Created by akmatleu on 17.05.17.
- */
 public class Task  extends BaseEntity{
     private TaskPrototype taskPrototype;
     private Event event;

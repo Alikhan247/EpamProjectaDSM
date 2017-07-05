@@ -5,22 +5,15 @@ import com.epam.adsm.dao.DaoException;
 import com.epam.adsm.model.Event;
 import com.epam.adsm.model.EventPrototype;
 import com.epam.adsm.model.Research;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 17.05.17.
- */
 public class EventDao extends Dao implements EntityDao<Event> {
     private static final Logger LOG = LoggerFactory.getLogger(EventDao.class);
     private static final String CREATE_EVENT = "INSERT INTO public.event(\n" +
@@ -102,6 +95,12 @@ public class EventDao extends Dao implements EntityDao<Event> {
         return event;
     }
 
+    /**
+     * At the moment, this functionality is not provided in the system, we do not use this method in this particular class.
+     * Other classes use this method to update the data in the database
+     * @param event
+     * @throws DaoException
+     */
     @Override
     public void update(Event event) throws DaoException {
     }

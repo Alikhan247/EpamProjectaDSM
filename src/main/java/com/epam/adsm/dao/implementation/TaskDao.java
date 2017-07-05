@@ -10,9 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by akmatleu on 17.05.17.
- */
+
 public class TaskDao extends Dao {
     private static final Logger LOG = LoggerFactory.getLogger(TaskDao.class);
     private static final String CREATE_TASK = "INSERT INTO public.task(\n" +
@@ -47,5 +45,4 @@ public class TaskDao extends Dao {
             throw new DaoException("Cannot updateTask task in database", e);
         }
     }
-
 }

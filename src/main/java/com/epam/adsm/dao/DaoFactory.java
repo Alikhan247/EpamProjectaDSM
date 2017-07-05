@@ -8,9 +8,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/**
- * Created by akmatleu on 08.05.17.
- */
 public class DaoFactory implements AutoCloseable {
 
     private static final Logger LOG = LoggerFactory.getLogger(DaoFactory.class);

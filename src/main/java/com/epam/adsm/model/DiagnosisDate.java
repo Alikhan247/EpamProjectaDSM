@@ -3,9 +3,6 @@ package com.epam.adsm.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 20.05.17.
- */
 public class DiagnosisDate {
 
     private List<String> riskFactors = new ArrayList<>();

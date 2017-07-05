@@ -12,9 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 09.05.17.
- */
 public class DrugDao extends Dao {
 
     private static final Logger LOG = LoggerFactory.getLogger(DrugDao.class);

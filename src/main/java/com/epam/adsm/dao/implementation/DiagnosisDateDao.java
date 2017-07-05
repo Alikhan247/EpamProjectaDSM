@@ -3,20 +3,14 @@ package com.epam.adsm.dao.implementation;
 import com.epam.adsm.dao.Dao;
 import com.epam.adsm.dao.DaoException;
 import com.epam.adsm.model.DiagnosisDate;
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 20.05.17.
- */
 public class DiagnosisDateDao extends Dao {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagnosisDateDao.class);

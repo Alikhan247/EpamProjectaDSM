@@ -1,8 +1,5 @@
 package com.epam.adsm.model;
 
-/**
- * Created by akmatleu on 09.05.17.
- */
 public class Drug extends BaseEntity{
 
     private String name;

@@ -1,8 +1,5 @@
 package com.epam.adsm.model;
 
-/**
- * Created by akmatleu on 19.05.17.
- */
 abstract class Person extends BaseEntity {
 
     private String name;

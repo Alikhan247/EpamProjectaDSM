@@ -16,9 +16,6 @@ import java.util.List;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 21.05.17.
- */
 public class ShowStaffEditAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(ShowStaffEditAction.class);
 

@@ -14,9 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 17.05.17.
- */
 public class ProtocolDao extends Dao {
     private static final Logger LOG = LoggerFactory.getLogger(ProtocolDao.class);
     private static final String GET_ALL_TASKS_PROTOTYPE_ID_BY_EVENT_PROTOTYPE = "SELECT * FROM public.protocol_events_tasks\n" +
@@ -41,11 +38,8 @@ public class ProtocolDao extends Dao {
     private Protocol pickTaskPrototypeIdFromResultSet(ResultSet resultSet) throws DaoException {
         Protocol protocol = new Protocol();
         try {
-            EventPrototype eventPrototype = new EventPrototype();
             TaskPrototype taskPrototype = new TaskPrototype();
-            eventPrototype.setId(resultSet.getInt(2));
             taskPrototype.setId(resultSet.getInt(3));
-            protocol.setEventPrototype(eventPrototype);
             protocol.setTaskPrototype(taskPrototype);
         } catch (SQLException e) {
             LOG.error("Cannot pick task prototype from result set", e);
@@ -53,5 +47,4 @@ public class ProtocolDao extends Dao {
         }
         return protocol;
     }
-
 }

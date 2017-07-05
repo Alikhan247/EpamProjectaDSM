@@ -3,8 +3,6 @@ package com.epam.adsm.dao.implementation;
 import com.epam.adsm.dao.Dao;
 import com.epam.adsm.dao.DaoException;
 import com.epam.adsm.model.EventPrototype;
-import org.joda.time.Duration;
-import org.joda.time.Interval;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,9 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 13.05.17.
- */
+
 public class EventPrototypeDao extends Dao {
 
     private static final Logger LOG = LoggerFactory.getLogger(EventPrototypeDao.class);
@@ -41,7 +37,6 @@ public class EventPrototypeDao extends Dao {
         EventPrototype eventPrototype = new EventPrototype();
         try {
             eventPrototype.setId(resultSet.getInt(1));
-            eventPrototype.setEventPrototypeName(resultSet.getString(2));
             eventPrototype.setEventInterval(resultSet.getInt(3));
         } catch (SQLException e) {
             LOG.error("Cannot pick event prototype from result set", e);

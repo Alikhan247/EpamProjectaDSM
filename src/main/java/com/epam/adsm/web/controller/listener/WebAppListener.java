@@ -9,10 +9,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-/**
- * Created by akmatleu on 18.05.17.
- */
-
 public class WebAppListener implements ServletContextListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebAppListener.class);
@@ -35,7 +31,5 @@ public class WebAppListener implements ServletContextListener {
         } catch (ConnectionPoolException e) {
             LOG.error("Cannot close connections in pool", e);
         }
-
-
     }
 }

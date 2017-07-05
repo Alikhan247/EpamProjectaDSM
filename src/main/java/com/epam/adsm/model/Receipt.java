@@ -1,8 +1,5 @@
 package com.epam.adsm.model;
 
-/**
- * Created by akmatleu on 15.05.17.
- */
 public class Receipt extends BaseEntity{
 
     private Patient patient;
@@ -52,5 +49,4 @@ public class Receipt extends BaseEntity{
     public void setReceiptDate(java.time.LocalDate receiptDate) {
         this.recieptDate = receiptDate;
     }
-
 }

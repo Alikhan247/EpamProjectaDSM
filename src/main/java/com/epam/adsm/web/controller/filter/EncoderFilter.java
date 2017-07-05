@@ -3,10 +3,6 @@ package com.epam.adsm.web.controller.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
-/**
- * Created by akmatleu on 25.05.17.
- */
-
 public class EncoderFilter implements Filter {
 
     private String code;
@@ -28,6 +24,6 @@ public class EncoderFilter implements Filter {
 
     @Override
     public void destroy() {
-
+        code = null;
     }
 }

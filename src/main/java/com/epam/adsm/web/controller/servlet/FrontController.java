@@ -15,11 +15,6 @@ import java.io.IOException;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 17.05.17.
- */
-
-
 public class FrontController extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger(FrontController.class);
     private ActionFactory actionFactory;

@@ -8,9 +8,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by akmatleu on 29.05.17.
- */
 public class ValidationAndEncoderService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ValidationAndEncoderService.class);

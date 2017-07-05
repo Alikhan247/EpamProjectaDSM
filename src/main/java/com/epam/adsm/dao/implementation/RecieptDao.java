@@ -15,9 +15,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 15.05.17.
- */
 public class RecieptDao extends Dao {
     private static final Logger LOG = LoggerFactory.getLogger(RecieptDao.class);
     private static final String CREATE_RECIEPT = "INSERT INTO public.reciept(\n" +
@@ -83,5 +80,4 @@ public class RecieptDao extends Dao {
         }
         return receipt;
     }
-
 }

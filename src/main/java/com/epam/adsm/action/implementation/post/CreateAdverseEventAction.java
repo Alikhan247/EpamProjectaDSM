@@ -8,8 +8,6 @@ import com.epam.adsm.model.Staff;
 import com.epam.adsm.service.ChemisterService;
 import com.epam.adsm.service.PatientService;
 import com.epam.adsm.service.ServiceExeption;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,9 +18,6 @@ import java.sql.Date;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 23.05.17.
- */
 public class CreateAdverseEventAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(CreateAdverseEventAction.class);
 

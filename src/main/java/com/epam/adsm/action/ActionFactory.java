@@ -1,18 +1,12 @@
 package com.epam.adsm.action;
 
-
 import com.epam.adsm.action.implementation.get.*;
 import com.epam.adsm.action.implementation.post.*;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
-
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 17.05.17.
- */
 public class ActionFactory {
     private  Map<String,Action> actionMap;
 

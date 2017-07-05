@@ -15,9 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 23.05.17.
- */
 public class CreateDrugAdministrationAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(CreateDrugAdministrationAction.class);
 
@@ -28,7 +25,6 @@ public class CreateDrugAdministrationAction implements Action {
         Patient patient = new Patient();
         Receipt receipt = new Receipt();
         String patientCode = request.getParameter(PATIENT_CODE);
-        System.out.println(patientCode);
         patient.setPatientCode(patientCode);
         receipt.setId(Integer.parseInt(request.getParameter(RECEIPT_ID)));
         drugAdministration.setPatient(patient);

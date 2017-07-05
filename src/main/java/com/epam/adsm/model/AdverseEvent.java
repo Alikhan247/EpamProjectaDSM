@@ -1,13 +1,5 @@
 package com.epam.adsm.model;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-
-import java.sql.Date;
-
-/**
- * Created by akmatleu on 13.05.17.
- */
 public class AdverseEvent extends BaseEntity {
 
     private String adverseName;

@@ -11,20 +11,14 @@ import com.epam.adsm.service.ServiceExeption;
 import com.epam.adsm.service.ValidationAndEncoderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Properties;
-
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 20.05.17.
- */
 public class CreateResearchAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(CreateStaffAction.class);
     private boolean invalid = false;
@@ -105,6 +99,7 @@ public class CreateResearchAction implements Action {
                                            String riskFactor, String localization, String prevalence, String clinicalForm,
                                            String mbtStatus, String patientType, String dstStatus, Patient patient,
                                            Diagnosis diagnosis) {
+
         patient.setPatientCode(patientCode);
         patient.setInitial(initial);
         patient.setPassword(ValidationAndEncoderService.encodePassword(password));
@@ -113,7 +108,7 @@ public class CreateResearchAction implements Action {
         patient.setPhoneNumber(phoneNumber);
         patient.setPatientSex(gender);
         patient.setDoctor(staff);
-        patient.setConfirmed(true);
+        patient.setConfirmed(IS_CONFIRMED);
         diagnosis.setRiskFactor(riskFactor);
         diagnosis.setLocalizationDisease(localization);
         diagnosis.setPrevalence(prevalence);

@@ -12,13 +12,8 @@ import com.epam.adsm.model.DrugAdministration;
 import com.epam.adsm.model.Receipt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 13.05.17.
- */
 public class ChemisterService {
     private static final Logger LOG = LoggerFactory.getLogger(ChemisterService.class);
 

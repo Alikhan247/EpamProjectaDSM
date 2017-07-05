@@ -1,8 +1,5 @@
 package com.epam.adsm.model;
 
-/**
- * Created by akmatleu on 11.05.17.
- */
 public class Staff extends Person {
 
     private boolean activity_status;
@@ -34,5 +31,4 @@ public class Staff extends Person {
     public void setDelete_status(boolean delete_status) {
         this.delete_status = delete_status;
     }
-
 }

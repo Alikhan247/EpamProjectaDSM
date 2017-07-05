@@ -2,7 +2,6 @@ package com.epam.adsm.action.implementation.post;
 
 import com.epam.adsm.action.Action;
 import com.epam.adsm.action.ActionResult;
-import com.epam.adsm.model.Event;
 import com.epam.adsm.model.Research;
 import com.epam.adsm.model.Task;
 import com.epam.adsm.service.CordinatorService;
@@ -16,9 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import static com.epam.adsm.action.ActionConstants.*;
 
-/**
- * Created by akmatleu on 24.05.17.
- */
 public class ChangeProgressAction implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(ChangeProgressAction.class);
 

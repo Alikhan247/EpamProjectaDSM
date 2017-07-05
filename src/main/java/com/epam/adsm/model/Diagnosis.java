@@ -1,8 +1,5 @@
 package com.epam.adsm.model;
 
-/**
- * Created by akmatleu on 10.05.17.
- */
 public class Diagnosis  extends  BaseEntity {
 
     private String riskFactor;

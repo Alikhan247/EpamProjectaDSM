@@ -11,9 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by akmatleu on 15.05.17.
- */
 public class DrugAdministraionDao extends Dao {
     private static final Logger LOG = LoggerFactory.getLogger(DrugAdministraionDao.class);
     private static final String CREATE_DRUG_ADMINISTRATION = "INSERT INTO public.drug_administration(\n" +
@@ -39,5 +36,4 @@ public class DrugAdministraionDao extends Dao {
         }
         return drugAdministration;
     }
-
 }

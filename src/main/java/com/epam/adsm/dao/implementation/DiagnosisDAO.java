@@ -13,9 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 11.05.17.
- */
 public class DiagnosisDao extends Dao {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagnosisDao.class);
@@ -86,5 +83,4 @@ public class DiagnosisDao extends Dao {
         }
         return diagnosis;
     }
-
 }

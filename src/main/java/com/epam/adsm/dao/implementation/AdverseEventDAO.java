@@ -15,9 +15,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Mukatayev Tleuzhan
- */
 public class AdverseEventDao extends Dao implements EntityDao<AdverseEvent> {
 
     private static final Logger LOG = LoggerFactory.getLogger(AdverseEventDao.class);

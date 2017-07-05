@@ -16,9 +16,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 15.04.17.
- */
 public class PatientDao extends Dao implements EntityDao<Patient> {
 
     private static final Logger LOG = LoggerFactory.getLogger(PatientDao.class);
@@ -160,7 +157,7 @@ public class PatientDao extends Dao implements EntityDao<Patient> {
 
     @Override
     public Patient findById(int id) throws DaoException {
-        return null;
+        return new Patient();
     }
 
     public Patient findByPatientCode(String id) throws DaoException {

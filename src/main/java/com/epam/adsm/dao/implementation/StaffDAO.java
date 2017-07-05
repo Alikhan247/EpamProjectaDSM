@@ -13,9 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akmatleu on 11.05.17.
- */
 public class StaffDao extends Dao implements EntityDao<Staff> {
     private static final Logger LOG = LoggerFactory.getLogger(StaffDao.class);
     private static final String INSERT_STAFF = "INSERT INTO public.staff(\n" +

@@ -19,6 +19,15 @@ CREATE SEQUENCE public.staff_staff_id_seq
   CACHE 1;
 ALTER TABLE public.staff_staff_id_seq
   OWNER TO "epamAdmin";
+  
+  CREATE SEQUENCE public.diagnosis_diagnosis_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 7
+  CACHE 1;
+ALTER TABLE public.diagnosis_diagnosis_id_seq
+  OWNER TO "epamAdmin";
 
 CREATE SEQUENCE public.research_id_seq
   INCREMENT 1
@@ -152,14 +161,6 @@ CREATE SEQUENCE public.adverse_event_adverse_event_id_seq
 ALTER TABLE public.adverse_event_adverse_event_id_seq
   OWNER TO "epamAdmin";
 
-CREATE SEQUENCE public.diagnosis_diagnosis_id_seq
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 7
-  CACHE 1;
-ALTER TABLE public.diagnosis_diagnosis_id_seq
-  OWNER TO "epamAdmin";
 
 -- DROP SEQUENCE public.drug_admin_drug_admin_id_seq;
 

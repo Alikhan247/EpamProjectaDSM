@@ -12,7 +12,7 @@ public class ActionFactory {
 
     private void init() {
         actionMap = new HashMap<>();
-        actionMap.put("GET/login", new ShowPageAction(LOGIN_PAGE));
+        actionMap.put("GET/login", new ShowLoginAction());
         actionMap.put("GET/createStaff", new ShowCreateStaffAction());
         actionMap.put("GET/homePage", new ShowPageAction(HOME_PAGE));
         actionMap.put("GET/createPatient",new CreatePatientAction());

@@ -417,6 +417,18 @@ CREATE TABLE public.list_date
   role_option character varying(255),
   adverse_status_option character varying(255),
   activation_status_option character varying(255),
+  role_option_eng character varying(255),
+  factor_risk_eng character varying(255),
+  localizatoin_eng character varying(255),
+  releavence_eng character varying(255),
+  clinical_form_eng character varying(255),
+  mbt_status_eng character varying(255),
+  patient_type_eng character varying(255),
+  dst_status_eng character varying(255),
+  administration_option_eng character varying(255),
+  gender_eng character varying(255),
+  adverse_status_option_eng character varying(255),
+  activation_status_option_eng character varying(255),
   CONSTRAINT date_list_pk PRIMARY KEY (id)
 )
 WITH (

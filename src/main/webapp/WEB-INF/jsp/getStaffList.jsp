@@ -41,7 +41,7 @@
                     <c:otherwise>
                         <td class="table-danger">${staff.activity_status}</td>
                     </c:otherwise>
-                </c:choose>"
+                </c:choose>
                 <td><a href="<c:url value="/do/staff/edit?staff_id=${staff.id}"/>">${Edit}</a></td>
             </tr>
         </c:forEach>

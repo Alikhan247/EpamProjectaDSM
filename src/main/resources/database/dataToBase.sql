@@ -106,60 +106,111 @@ INSERT INTO public.event_prototype(
 	event_prototype_id, event_prototype_name, event_interval)
 	VALUES (21, 'Месяц 20',600);
 
+INSERT INTO public.list_date(
+            factor_risk, localizatoin, releavence, clinical_form, mbt_status,
+            patient_type, dst_status, administration_option, gender, role_option,
+            adverse_status_option, activation_status_option, role_option_eng,
+            factor_risk_eng, localizatoin_eng, releavence_eng, clinical_form_eng,
+            mbt_status_eng, patient_type_eng, dst_status_eng, administration_option_eng,
+            gender_eng, adverse_status_option_eng, activation_status_option_eng)
+    VALUES ('Контактный', 'Легочный ТБ', 'Односторонний', 'Диссеминированный туберкулез', 'МБТ +',
+            'Новый случай', 'Полирезистентность','Приём препарата под контролем','Мужчина','Координатор','Разрешено','Активный',
+            'coordinator','Contact','Pulmonary TB','Unilateral',
+            'Disseminated tuberculosis','MBT +','A new case','Multidrug resistance',
+            'Administration a drug under control','Male','Solved','Active');
+
 
 INSERT INTO public.list_date(
             factor_risk, localizatoin, releavence, clinical_form, mbt_status,
-            patient_type, dst_status , administration_option, gender, role_option,
-            adverse_status_option, activation_status_option)
-    VALUES ( 'Контактный', 'Легочный ТБ', 'Односторонний', 'Диссеминированный туберкулез', 'МБТ +',
-            'Новый случай', 'Полирезистентность','Приём препарата под контролем','Мужчина','coordinator','Разрешено','Активный');
-INSERT INTO public.list_date(
-            factor_risk, localizatoin, releavence, clinical_form, mbt_status,
-            patient_type, dst_status , administration_option, gender, role_option,
-            adverse_status_option, activation_status_option)
-    VALUES ( 'Сахарный диабет', 'Внелегочный', 'Двусторонний', 'Милиарный туберкулез', 'МБТ -',
-            'Неудача лечения', 'МЛУ' , 'Выдача препарата на руки','Женщина','doctor','Отложено','Не Активный');
+            patient_type, dst_status, administration_option, gender, role_option,
+            adverse_status_option, activation_status_option, role_option_eng,
+            factor_risk_eng, localizatoin_eng, releavence_eng, clinical_form_eng,
+            mbt_status_eng, patient_type_eng, dst_status_eng, administration_option_eng,
+            gender_eng, adverse_status_option_eng, activation_status_option_eng)
+    VALUES ('Сахарный диабет', 'Внелегочный', 'Двусторонний', 'Милиарный туберкулез', 'МБТ -',
+            'Неудача лечения', 'МЛУ','Выдача препарата на руки','Женщина','Доктор','Не разрешено','Не активный',
+            'doctor','Diabetes','Extrapulmonary','Bilateral',
+            'Miliary tuberculosis','MBT -','Failure of treatment','MDR',
+            'Delivery of the drug on hand','Female','Not solved','Not active');
+
+
 INSERT INTO public.list_date(
             factor_risk, localizatoin,  clinical_form,
-            patient_type, dst_status , administration_option, role_option,
-            adverse_status_option)
-    VALUES ( 'Наркомания', 'Сочетанный', 'Очаговый(ограниченный) туберкулёз',
-            'Рецидив', 'преШЛУ(иньекционный)','Пропуск суточной дозы','drug delivery','Не разрешено');
+            patient_type, dst_status, administration_option,  role_option,
+            role_option_eng,
+            factor_risk_eng, localizatoin_eng, clinical_form_eng,
+            patient_type_eng, dst_status_eng, administration_option_eng)
+    VALUES ('Наркомания', 'Сочетанный', 'Очаговый(ограниченный) туберкулёз',
+            'Рецидив', 'преШЛУ(иньекционный)','Пропуск суточной дозы','Химизатор',
+            'drug delivery','Addiction','Combined TB',
+            'Focal (limited) tuberculosis',' Relapse','preXDR (injection)',
+            'Skipping the daily dose');
+
 INSERT INTO public.list_date(
-            factor_risk,   clinical_form,
-            patient_type, dst_status)
-    VALUES ( 'Злоупотребление алкоголем',  'Инфильтративный туберкулёз',
-            'Лечение после перерыва', 'преШЛУ(фторхинолон-R)');
+            factor_risk,  clinical_form,
+            patient_type, dst_status,
+            factor_risk_eng,  clinical_form_eng,
+            patient_type_eng, dst_status_eng)
+    VALUES ('Злоупотребление алкоголем', 'Инфильтративный туберкулёз', 'Лечение после перерыва', 'преШЛУ(фторхинолон-R)',
+            'Alcohol abuse','Infiltrative tuberculosis','Treatment after a break','preXDR(fluoroquinolone-R)');
+
 INSERT INTO public.list_date(
-            factor_risk,   clinical_form,
-            patient_type, dst_status)
-    VALUES ( 'Нахождение в местах свободы за последние 2 года',  'Казеозная пневмония',
-            'Переведен', 'ШЛУ)');
+            factor_risk,  clinical_form,
+            patient_type, dst_status,
+            factor_risk_eng,  clinical_form_eng,
+            patient_type_eng, dst_status_eng)
+    VALUES ('Нахождение в местах свободы за последние 2 года', 'Казеозная пневмония', 'Переведен', 'ШЛУ',
+            'Being in prison for last 2 years','Caseous pneumonia','Transfered','XDR');
+
 INSERT INTO public.list_date(
-            factor_risk,   clinical_form,
-            dst_status)
-    VALUES ( 'ВИЧ',  'Туберкулёма','Другое');
+            factor_risk,  clinical_form,
+            dst_status,
+            factor_risk_eng, clinical_form_eng,
+             dst_status_eng)
+    VALUES ('ВИЧ', 'Туберкулёма', 'Другое', 'HIV',
+            'Tuberculosis','Other');
+
 INSERT INTO public.list_date(
-            factor_risk,   clinical_form )
-    VALUES ( 'Женщины в послеродовом периоде до 1 года',  'Кавернозный туберкулёз');
+            factor_risk,  clinical_form,
+            factor_risk_eng, clinical_form_eng)
+    VALUES ('Женщины в послеродовом периоде до 1 года','Кавернозный туберкулёз','Women in the puerperium up to 1 year',
+            'Cavernous tuberculosis');
+
 INSERT INTO public.list_date(
-            factor_risk,   clinical_form )
-    VALUES ( 'Беременность',  'Фиброзно - кавернозный туберкулёз');
+            factor_risk,  clinical_form,
+            factor_risk_eng, clinical_form_eng)
+    VALUES ('Беременность', 'Фиброзно - кавернозный туберкулёз', 'Pregnancy',
+            'Fibrous-cavernous tuberculosis');
 INSERT INTO public.list_date(
-            factor_risk,   clinical_form )
-    VALUES ( 'Другие',  'Цирротический туберкулёз');
-INSERT INTO public.list_date(clinical_form )
-    VALUES ( 'Туберкулёз органов пищеварительной системы');
-INSERT INTO public.list_date(clinical_form )
-    VALUES ( 'Туберкулёз органов мочеполовой системы');
-INSERT INTO public.list_date(clinical_form )
-    VALUES ( 'Туберкулёз центральной нервной системы и мозговых оболочек');
-INSERT INTO public.list_date(clinical_form )
-    VALUES ( 'Туберкулёз костей и суставов');
-INSERT INTO public.list_date(clinical_form )
-    VALUES ( 'Туберкулёз кожи');
-INSERT INTO public.list_date(clinical_form )
-    VALUES ( 'Туберкулёз глаз');
+            factor_risk,  clinical_form,
+            factor_risk_eng, clinical_form_eng)
+    VALUES ('Другие', 'Цирротический туберкулёз', 'Other',
+            'Cirrhotic tuberculosis');
+INSERT INTO public.list_date(
+            clinical_form,
+            clinical_form_eng)
+    VALUES ('Туберкулёз органов пищеварительной системы', 'Tuberculosis of the digestive system');
+INSERT INTO public.list_date(
+            clinical_form,
+            clinical_form_eng)
+    VALUES ('Туберкулёз органов мочеполовой системы', 'Tuberculosis of the urogenital system');
+INSERT INTO public.list_date(
+            clinical_form,
+            clinical_form_eng)
+    VALUES ('Туберкулёз центральной нервной системы и мозговых оболочек', 'Tuberculosis of the central nervous system and meninges');
+INSERT INTO public.list_date(
+            clinical_form,
+            clinical_form_eng)
+    VALUES ('Туберкулёз костей и суставов', 'Tuberculosis of bones and joints');
+INSERT INTO public.list_date(
+            clinical_form,
+            clinical_form_eng)
+    VALUES ('Туберкулёз кожи', 'Lupus');
+INSERT INTO public.list_date(
+            clinical_form,
+            clinical_form_eng)
+    VALUES ('Туберкулёз глаз', 'Tuberculosis of the eye');
+
 
 
 
@@ -1276,3 +1327,7 @@ INSERT INTO public.protocol_events_tasks(
 INSERT INTO public.staff(
             name, surname, phone_number, password, role)
     VALUES ('John', 'Smith', '0', 'cfcd208495d565ef66e7dff9f98764da', 'coordinator');
+
+INSERT INTO public.staff(
+            name, surname, phone_number, password, role)
+    VALUES ('Doctor', 'Test', '9', '45c48cce2e2d7fbdea1afc51c7c6ad26', 'doctor');

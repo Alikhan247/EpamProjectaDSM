@@ -11,6 +11,7 @@ import com.epam.adsm.service.ServiceExeption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -30,13 +31,20 @@ public class ShowDrugAdminAction implements Action {
         String patientCode = request.getParameter(PATIENT_CODE);
         ChemisterService chemisterService = new ChemisterService();
         try {
-            DiagnosisDate diagnosisDate = cordinatorService.getDiagnosisDate();
-            administrationOptions = diagnosisDate.getAdministrationOption();
-            receipts = chemisterService.getAllRecieptsByPatientCode(patientCode);
-            drugs = chemisterService.getAllDrugs();
-            request.setAttribute(RECEIPTS, receipts);
-            request.setAttribute(DRUGS, drugs);
-            request.setAttribute(ADMINISTRATION_OPTIONS,administrationOptions);
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals(LANG)) {
+                        DiagnosisDate diagnosisDate = cordinatorService.getDiagnosisDate(cookie.getValue());
+                        administrationOptions = diagnosisDate.getAdministrationOption();
+                        receipts = chemisterService.getAllRecieptsByPatientCode(patientCode);
+                        drugs = chemisterService.getAllDrugs();
+                        request.setAttribute(RECEIPTS, receipts);
+                        request.setAttribute(DRUGS, drugs);
+                        request.setAttribute(ADMINISTRATION_OPTIONS,administrationOptions);
+                    }
+                }
+            }
         } catch (ServiceExeption e) {
             LOG.error("Cannot find receipt by patientCode" + patientCode, e);
         }

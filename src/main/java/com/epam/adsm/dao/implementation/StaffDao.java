@@ -24,6 +24,7 @@ public class StaffDao extends Dao implements EntityDao<Staff> {
     private static final String FIND_BY_PHONE = "SELECT * FROM public.staff WHERE phone_number = ?";
     private static final String UPDATE_STAFF = "UPDATE public.staff SET phone_number=?, activity_status=? WHERE staff_id=?";
     private static final String GET_ALL_STAFF = "SELECT *  FROM public.staff WHERE delete_status = false ORDER BY surname ASC";
+    private static final String GET_ROLE = "SELECT role_option_eng FROM list_date WHERE role_option = ?";
 
     public List<Staff> getAllStaff() throws DaoException {
         List<Staff> staffArrayList = new ArrayList<>();
@@ -83,6 +84,7 @@ public class StaffDao extends Dao implements EntityDao<Staff> {
             statement.setString(3, staff.getPhoneNumber());
             statement.setBoolean(4, staff.isActivity_status());
             statement.setString(5, staff.getPassword());
+            staff.setRole(convertRoleToEnglish(staff.getRole()));
             statement.setString(6, staff.getRole());
             statement.setBoolean(7, staff.isDelete_status());
             statement.executeUpdate();
@@ -94,9 +96,25 @@ public class StaffDao extends Dao implements EntityDao<Staff> {
             resultSet.close();
         } catch (SQLException e) {
             LOG.error("Cannot createDiagnosis staff in database", e);
-            throw new DaoException("Cannot createDiagnosis staff in database", e);
+            throw new DaoException("Cannot create staff in database", e);
         }
         return staff;
+    }
+
+    private String convertRoleToEnglish(String role) throws DaoException {
+        if (role.equalsIgnoreCase("Доктор") || role.equalsIgnoreCase("Координатор") || role.equalsIgnoreCase("Химизатор")) {
+            try (PreparedStatement statement = getConnection().prepareStatement(GET_ROLE)) {
+                statement.setString(1, role);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    role = resultSet.getString(1);
+                }
+            } catch (SQLException e) {
+                LOG.error("Cannot convert role to english", e);
+                throw new DaoException("Cannot convert role to english", e);
+            }
+        }
+        return role;
     }
 
     @Override
@@ -124,8 +142,8 @@ public class StaffDao extends Dao implements EntityDao<Staff> {
             statement.setInt(3, staff.getId());
             statement.execute();
         } catch (SQLException e) {
-            LOG.error("Cannot updateTask staff in database", e);
-            throw new DaoException("Cannot updateTask staff in database", e);
+            LOG.error("Cannot update staff in database", e);
+            throw new DaoException("Cannot update staff in database", e);
         }
     }
 
@@ -141,7 +159,7 @@ public class StaffDao extends Dao implements EntityDao<Staff> {
             staff.setRole(resultSet.getString(7));
             staff.setDelete_status(resultSet.getBoolean(8));
         } catch (SQLException e) {
-            LOG.error("Canno pick staff from result set", e);
+            LOG.error("Cannot pick staff from result set", e);
             throw new DaoException("Cannot pick staff from result set", e);
         }
         return staff;

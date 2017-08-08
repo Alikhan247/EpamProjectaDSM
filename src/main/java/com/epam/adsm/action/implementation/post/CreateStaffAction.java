@@ -1,5 +1,6 @@
 package com.epam.adsm.action.implementation.post;
 
+import com.epam.adsm.action.implementation.get.ShowCreateStaffAction;
 import com.epam.adsm.service.CordinatorService;
 import com.epam.adsm.service.ServiceExeption;
 import com.epam.adsm.action.Action;
@@ -57,6 +58,8 @@ public class CreateStaffAction implements Action {
         }
         if (invalid) {
             invalid = false;
+            ShowCreateStaffAction showCreateStaffAction = new ShowCreateStaffAction();
+            showCreateStaffAction.execute(request,response);
             return new ActionResult(CREATE_STAFF_PAGE);
         }
         staff.setName(name);

@@ -11,6 +11,7 @@ import com.epam.adsm.service.ServiceExeption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,10 +34,17 @@ public class ShowDoctorPatientsAdverseAction implements Action {
         CordinatorService cordinatorService = new CordinatorService();
         try {
             adverseEvents = doctorService.getDoctorAdverseEvents(doctor);
-            DiagnosisDate diagnosisDate = cordinatorService.getDiagnosisDate();
-            List<String> adverseStatuses = diagnosisDate.getAdverseStatusOption();
-            request.setAttribute(ADVERSE_STATUSES,adverseStatuses);
-            request.setAttribute(DOCTOR_PATIENTS_ADVERSE_EVENTS, adverseEvents);
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals(LANG)) {
+                        DiagnosisDate diagnosisDate = cordinatorService.getDiagnosisDate(cookie.getValue());
+                        List<String> adverseStatuses = diagnosisDate.getAdverseStatusOption();
+                        request.setAttribute(ADVERSE_STATUSES,adverseStatuses);
+                        request.setAttribute(DOCTOR_PATIENTS_ADVERSE_EVENTS, adverseEvents);
+                    }
+                }
+            }
         } catch (ServiceExeption e) {
             LOG.error("Cannot get adverse events from service", e);
         }

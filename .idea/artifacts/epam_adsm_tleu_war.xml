@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="epam.adsm.tleu:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="epam.adsm.tleu.war">
+      <element id="artifact" artifact-name="epam.adsm.tleu:war exploded" />
+    </root>
+  </artifact>
+</component>

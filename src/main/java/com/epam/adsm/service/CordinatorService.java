@@ -181,12 +181,12 @@ public class CordinatorService {
         return research;
     }
 
-    public DiagnosisDate getDiagnosisDate() throws ServiceExeption {
+    public DiagnosisDate getDiagnosisDate(String localeLanguage) throws ServiceExeption {
         DiagnosisDate diagnosisDate;
         try (DaoFactory daoFactory = new DaoFactory()) {
             DiagnosisDateDao diagnosisDateDao = daoFactory.getDao(DiagnosisDateDao.class);
             daoFactory.startTransaction();
-            diagnosisDate = diagnosisDateDao.getDiagnosisDate();
+            diagnosisDate = diagnosisDateDao.getDiagnosisDate(localeLanguage);
             daoFactory.commitTransaction();
         } catch (DaoException e) {
             LOG.error("Cannot get diagnosis date from dao", e);

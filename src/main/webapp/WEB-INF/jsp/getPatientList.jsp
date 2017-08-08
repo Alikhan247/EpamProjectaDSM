@@ -78,7 +78,7 @@
                             <c:otherwise>
                                 <td class="table-danger">${research.activationStatus}</td>
                             </c:otherwise>
-                        </c:choose>"
+                        </c:choose>
                     </c:if>
                 </c:forEach>
                 <td><a href="<c:url value="/do/patient/edit?patientCode=${patient.patientCode}"/> ">${Edit}</a></td>

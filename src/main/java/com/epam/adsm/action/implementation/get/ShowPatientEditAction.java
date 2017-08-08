@@ -11,6 +11,7 @@ import com.epam.adsm.service.ServiceExeption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,9 +32,16 @@ public class ShowPatientEditAction implements Action {
         try {
             patient = patientService.findPatientByCode(patientCode);
             research = cordinatorService.findResearchByPatientCode(patientCode);
-            DiagnosisDate diagnosisDate = cordinatorService.getDiagnosisDate();
-            List<String> activaionStatuses = diagnosisDate.getActivationStatusOption();
-            request.setAttribute(ACTIVATION_STATUSES, activaionStatuses);
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals(LANG)) {
+                        DiagnosisDate diagnosisDate = cordinatorService.getDiagnosisDate(cookie.getValue());
+                        List<String> activaionStatuses = diagnosisDate.getActivationStatusOption();
+                        request.setAttribute(ACTIVATION_STATUSES, activaionStatuses);
+                    }
+                }
+            }
         } catch (ServiceExeption e) {
             LOG.error("Cannot find patient with code" + patientCode, e);
         }

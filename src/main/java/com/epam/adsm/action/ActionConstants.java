@@ -92,6 +92,7 @@ public final class ActionConstants {
     public static final String PATH_JSP = "/WEB-INF/jsp/";
     public static final String JSP = ".jsp";
     public static final String LANG = "lang";
+    public static final String LANG_ENG = "en";
     public static final int HOUR = 24;
     public static final int MINUTE = 60;
     public static final int SEC = 60;

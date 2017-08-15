@@ -8,8 +8,6 @@ CREATE DATABASE "epamADSM"
   WITH OWNER = "epamAdmin"
        ENCODING = 'UTF8'
        TABLESPACE = pg_default
-       LC_COLLATE = 'en_US.UTF-8'
-       LC_CTYPE = 'en_US.UTF-8'
        CONNECTION LIMIT = -1;
 
 
@@ -20,6 +18,15 @@ CREATE SEQUENCE public.staff_staff_id_seq
   START 13
   CACHE 1;
 ALTER TABLE public.staff_staff_id_seq
+  OWNER TO "epamAdmin";
+  
+  CREATE SEQUENCE public.diagnosis_diagnosis_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 7
+  CACHE 1;
+ALTER TABLE public.diagnosis_diagnosis_id_seq
   OWNER TO "epamAdmin";
 
 CREATE SEQUENCE public.research_id_seq
@@ -79,6 +86,32 @@ WITH (
 ALTER TABLE public.patient
   OWNER TO "epamAdmin";
 
+-- Table: public.diagnosis
+
+-- DROP TABLE public.diagnosis;
+
+CREATE TABLE public.diagnosis
+(
+  diagnosis_id integer NOT NULL DEFAULT nextval('diagnosis_diagnosis_id_seq'::regclass),
+  risk_factor character varying(255) NOT NULL,
+  localization_disease character varying(255) NOT NULL,
+  prevalence character varying(255) NOT NULL,
+  clinical_form character varying(255) NOT NULL,
+  mbt_status character varying(255) NOT NULL,
+  patient_type character varying(255) NOT NULL,
+  dst_status character varying(255) NOT NULL,
+  patient_id character varying(50) NOT NULL,
+  CONSTRAINT diagnosis_pkey PRIMARY KEY (diagnosis_id),
+  CONSTRAINT diagnosis_patient_fkey FOREIGN KEY (patient_id)
+      REFERENCES public.patient (patient_id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.diagnosis
+  OWNER TO "epamAdmin";
+
 
 
 
@@ -127,6 +160,7 @@ CREATE SEQUENCE public.adverse_event_adverse_event_id_seq
   CACHE 1;
 ALTER TABLE public.adverse_event_adverse_event_id_seq
   OWNER TO "epamAdmin";
+
 
 -- DROP SEQUENCE public.drug_admin_drug_admin_id_seq;
 

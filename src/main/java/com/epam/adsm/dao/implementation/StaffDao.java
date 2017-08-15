@@ -25,6 +25,9 @@ public class StaffDao extends Dao implements EntityDao<Staff> {
     private static final String UPDATE_STAFF = "UPDATE public.staff SET phone_number=?, activity_status=? WHERE staff_id=?";
     private static final String GET_ALL_STAFF = "SELECT *  FROM public.staff WHERE delete_status = false ORDER BY surname ASC";
     private static final String GET_ROLE = "SELECT role_option_eng FROM list_date WHERE role_option = ?";
+    private static final String DOCTOR_RU = "Доктор";
+    private static final String CHEMISTER_RU = "Координатор";
+    private static final String COORDINATOR_RU = "Химизатор";
 
     public List<Staff> getAllStaff() throws DaoException {
         List<Staff> staffArrayList = new ArrayList<>();
@@ -102,7 +105,7 @@ public class StaffDao extends Dao implements EntityDao<Staff> {
     }
 
     private String convertRoleToEnglish(String role) throws DaoException {
-        if (role.equalsIgnoreCase("Доктор") || role.equalsIgnoreCase("Координатор") || role.equalsIgnoreCase("Химизатор")) {
+        if (role.equalsIgnoreCase(DOCTOR_RU) || role.equalsIgnoreCase(COORDINATOR_RU) || role.equalsIgnoreCase(CHEMISTER_RU)) {
             try (PreparedStatement statement = getConnection().prepareStatement(GET_ROLE)) {
                 statement.setString(1, role);
                 ResultSet resultSet = statement.executeQuery();

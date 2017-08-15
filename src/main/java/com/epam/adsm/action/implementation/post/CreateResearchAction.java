@@ -38,6 +38,12 @@ public class CreateResearchAction implements Action {
         } catch (IOException e) {
             LOG.error("cannot load validation properties", e);
         }
+        if(request.getParameter(STAFF_ID)==null){
+                request.setAttribute(ERROR,ERROR_NULL_DOCTORS);
+                CreatePatientAction createPatientAction = new CreatePatientAction();
+                createPatientAction.execute(request, response);
+                return new ActionResult(CREATE_PATIENT_PAGE);
+        }
         staff.setId(Integer.parseInt(request.getParameter(ActionConstants.STAFF_ID)));
         String patientCode = request.getParameter(ActionConstants.PATIENT_CODE);
         String initial = request.getParameter(ActionConstants.INITIAL);

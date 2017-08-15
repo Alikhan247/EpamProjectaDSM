@@ -9,9 +9,15 @@
     <fmt:message key="receipt.DrugName" var="drugName"/>
     <fmt:message key="receipt.DrugDoze" var="drugDoze"/>
     <fmt:message key="receipt.Safe" var="safe"/>
+    <fmt:message key="error.float" var="errorFloat"/>
 </fmt:bundle>
 <c:url var="createReceipt_url" value="/do/createReceipt"/>
 <mytag:mainPattern role="${sessionScope.role}">
+    <c:if test="${not empty error}">
+        <div class="alert alert-danger" role="alert">
+                    <strong>${errorFloat}</strong>
+        </div>
+    </c:if>
     <div class="container col-md-6" id="createPatientFrom">
         <form method="post" action="">
             <h3>${createReceipt}</h3>

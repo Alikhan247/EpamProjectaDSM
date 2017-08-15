@@ -28,6 +28,7 @@ public final class ActionConstants {
     public static final String PHONE = "phone";
     public static final String ROLE = "role";
     public static final String DOCTOR = "doctor";
+    public static final String CHEMISTRY = "drug delivery";
     public static final String DOCTORS = "doctors";
     public static final String PASSWORD = "password";
     public static final String CONFIRMED_PASS = "confirmedPassword";
@@ -103,6 +104,8 @@ public final class ActionConstants {
     public static final String ERROR_NULL_FIELDS = "errorNull";
     public static final String ERROR_PASSWORD = "errorPassword";
     public static final String ERROR_PHONE_EXIST = "errorPhoneExist";
+    public static final String ERROR_CONVERT_FLOAT = "errorFloat";
+    public static final String ERROR_NULL_DOCTORS = "errorNullDoctors";
     public static final boolean IS_CONFIRMED = true;
 
     private ActionConstants() {}

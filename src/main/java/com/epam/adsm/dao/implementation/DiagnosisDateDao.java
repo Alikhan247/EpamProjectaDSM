@@ -5,6 +5,7 @@ import com.epam.adsm.dao.DaoException;
 import com.epam.adsm.model.DiagnosisDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,16 +18,17 @@ public class DiagnosisDateDao extends Dao {
     private static final String GET_All_DATE_RU = "SELECT factor_risk, localizatoin, releavence, clinical_form, mbt_status, \n" +
             "       patient_type, dst_status, administration_option, gender, role_option, adverse_status_option, activation_status_option\n" +
             "  FROM public.list_date";
-    public static final String GET_All_DATE_ENG = "SELECT factor_risk_eng, localizatoin_eng, releavence_eng, clinical_form_eng, mbt_status_eng, \n" +
+    private static final String GET_All_DATE_ENG = "SELECT factor_risk_eng, localizatoin_eng, releavence_eng, clinical_form_eng, mbt_status_eng, \n" +
             "       patient_type_eng, dst_status_eng, administration_option_eng, gender_eng, role_option_eng, adverse_status_option_eng, activation_status_option_eng\n" +
             "  FROM public.list_date";
+    private static final String ENG_LOCALE = "en";
 
     public DiagnosisDate getDiagnosisDate(String localeLanguage) throws DaoException {
         DiagnosisDate diagnosisDate = null;
         String query;
-        if (localeLanguage.equalsIgnoreCase("en")){
+        if (localeLanguage.equalsIgnoreCase(ENG_LOCALE)) {
             query = GET_All_DATE_ENG;
-        }else {
+        } else {
             query = GET_All_DATE_RU;
         }
         try (PreparedStatement statement = getConnection().prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)) {
@@ -82,19 +84,19 @@ public class DiagnosisDateDao extends Dao {
                 if (resultSet.getString(7) != null) {
                     dstStatus.add(resultSet.getString(7));
                 }
-                if (resultSet.getString(8)!= null) {
+                if (resultSet.getString(8) != null) {
                     administrationOption.add(resultSet.getString(8));
                 }
-                if (resultSet.getString(9)!= null) {
+                if (resultSet.getString(9) != null) {
                     gender.add(resultSet.getString(9));
                 }
-                if (resultSet.getString(10)!= null) {
+                if (resultSet.getString(10) != null) {
                     roleOption.add(resultSet.getString(10));
                 }
-                if (resultSet.getString(11)!=null) {
+                if (resultSet.getString(11) != null) {
                     adverseStatusOption.add(resultSet.getString(11));
                 }
-                if (resultSet.getString(12)!=null) {
+                if (resultSet.getString(12) != null) {
                     activationStatusOption.add(resultSet.getString(12));
                 }
             }

@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.epam.adsm.action.ActionConstants.LOGIN_PAGE;
-import static com.epam.adsm.action.ActionConstants.ROLE;
+import static com.epam.adsm.action.ActionConstants.*;
 
 public class SecurityFilter implements Filter {
     private static final Logger LOG = LoggerFactory.getLogger(SecurityFilter.class);
@@ -50,7 +49,7 @@ public class SecurityFilter implements Filter {
         String path = request.getPathInfo();
         for (String coordinatorPage : COORDINATOR_PAGES) {
             if (path.startsWith(coordinatorPage)) {
-                if (request.getSession().getAttribute(ROLE).equals("coordinator")) {
+                if (request.getSession().getAttribute(ROLE).equals(COORDINATOR)) {
                     filterChain.doFilter(request, response);
                     return;
                 } else {
@@ -62,7 +61,7 @@ public class SecurityFilter implements Filter {
         }
         for (String doctorPage : DOCTOR_PAGES) {
             if (path.startsWith(doctorPage)) {
-                if (request.getSession().getAttribute(ROLE).equals("doctor") || (doctorPage.equals("/event/details") && request.getSession().getAttribute(ROLE).equals("patient"))) {
+                if (request.getSession().getAttribute(ROLE).equals(DOCTOR) || (doctorPage.equals("/event/details") && request.getSession().getAttribute(ROLE).equals(PATIENT_ROLE))) {
                     filterChain.doFilter(request, response);
                     return;
                 } else {
@@ -74,7 +73,7 @@ public class SecurityFilter implements Filter {
         }
         for (String chemisterPage : CHEMISTER_PAGES) {
             if (path.startsWith(chemisterPage)) {
-                if (request.getSession().getAttribute(ROLE).equals("drug delivery") || (chemisterPage.equals("/createAdverseEvent/") && request.getSession().getAttribute(ROLE).equals("patient"))) {
+                if (request.getSession().getAttribute(ROLE).equals(CHEMISTRY) || (chemisterPage.equals("/createAdverseEvent/") && request.getSession().getAttribute(ROLE).equals(PATIENT_ROLE))) {
                     filterChain.doFilter(request, response);
                     return;
                 } else {
@@ -86,7 +85,7 @@ public class SecurityFilter implements Filter {
         }
         for (String patientPage : PATIENT_PAGES) {
             if (path.startsWith(patientPage)) {
-                if (request.getSession().getAttribute(ROLE).equals("patient")) {
+                if (request.getSession().getAttribute(ROLE).equals(PATIENT_ROLE)) {
                     filterChain.doFilter(request, response);
                     return;
                 } else {
@@ -101,9 +100,9 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void destroy() {
-       COORDINATOR_PAGES.clear();
-       CHEMISTER_PAGES.clear();
-       DOCTOR_PAGES.clear();
-       PATIENT_PAGES.clear();
+        COORDINATOR_PAGES.clear();
+        CHEMISTER_PAGES.clear();
+        DOCTOR_PAGES.clear();
+        PATIENT_PAGES.clear();
     }
 }

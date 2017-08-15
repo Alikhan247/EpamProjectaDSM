@@ -2,6 +2,7 @@ package com.epam.adsm.action.implementation.post;
 
 import com.epam.adsm.action.Action;
 import com.epam.adsm.action.ActionResult;
+import com.epam.adsm.action.implementation.get.ShowRecieptAction;
 import com.epam.adsm.model.Drug;
 import com.epam.adsm.model.Patient;
 import com.epam.adsm.model.Receipt;
@@ -33,7 +34,15 @@ public class CreateReceiptAction implements Action {
         drug.setId(Integer.parseInt(request.getParameter(DRUG_ID)));
         receipt.setDrug(drug);
         receipt.setReceipt_status(true);
-        receipt.setDrugDoze(Float.valueOf(request.getParameter(DRUG_DOZE)));
+        try{
+            receipt.setDrugDoze(Float.valueOf(request.getParameter(DRUG_DOZE)));
+        }catch (NumberFormatException e){
+            LOG.error("Cannot convert drug doze to float number");
+            request.setAttribute(ERROR,ERROR_CONVERT_FLOAT);
+            ShowRecieptAction showRecieptAction = new ShowRecieptAction();
+            showRecieptAction.execute(request,response);
+            return new ActionResult(CREATE_RECEIPT);
+        }
         receipt.setReceiptDate(java.time.LocalDate.now());
         ChemisterService chemisterService = new ChemisterService();
         try {

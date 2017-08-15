@@ -30,8 +30,10 @@ public class AdverseEventDao extends Dao implements EntityDao<AdverseEvent> {
             "ON patient.patient_id = adverse_event.patient_id\n" +
             "JOIN staff\n" +
             "ON staff.staff_id = patient.staff_id\n" +
-            "WHERE adverse_event.adverse_status IS DISTINCT FROM 'Разрешено' AND staff.staff_id = ? \n" +
+            "WHERE adverse_event.adverse_status IS DISTINCT FROM 'Solved' AND staff.staff_id = ? \n" +
             "ORDER BY adverse_event.adverse_event_date";
+    private static final String STATUS_RU = "Разрешено";
+    private static final String STATUS_ENG = "Solved";
 
     @Override
     public AdverseEvent create(AdverseEvent adverseEvent) throws DaoException {
@@ -78,7 +80,7 @@ public class AdverseEventDao extends Dao implements EntityDao<AdverseEvent> {
     @Override
     public void update(AdverseEvent adverseEvent) throws DaoException {
         try (PreparedStatement statement = getConnection().prepareStatement(UPDATE_ADVERSE_EVENT_STATUS)) {
-            statement.setString(1, adverseEvent.getAdverseStatus());
+            statement.setString(1, convertStatusToEnglish(adverseEvent.getAdverseStatus()));
             statement.setInt(2, adverseEvent.getId());
             statement.execute();
         } catch (SQLException e) {
@@ -132,5 +134,12 @@ public class AdverseEventDao extends Dao implements EntityDao<AdverseEvent> {
             throw new DaoException("Cannot createDrugAdministration adverse event by result set", e);
         }
         return adverseEvent;
+    }
+
+    private String convertStatusToEnglish(String status) throws DaoException {
+        if (status.equalsIgnoreCase(STATUS_RU)) {
+            status = STATUS_ENG;
+        }
+        return status;
     }
 }

@@ -29,6 +29,7 @@
     <fmt:message key="error.null" var="errorNullFields"/>
     <fmt:message key="error.password" var="errorPasswords"/>
     <fmt:message key="error.phone" var="errorPhone"/>
+    <fmt:message key="error.nullDoctors" var="errorDoctors"/>
 </fmt:bundle>
 <mytag:mainPattern role="${sessionScope.role}">
     <div class="container col-md-6" id="createPatientFrom">
@@ -40,6 +41,9 @@
                     </c:when>
                     <c:when test="${error.equals('errorPhoneExist')}">
                         <strong>${errorPhone}</strong>
+                    </c:when>
+                    <c:when test="${error.equals('errorNullDoctors')}">
+                        <strong>${errorDoctors}</strong>
                     </c:when>
                     <c:otherwise>
                         <strong>${errorPasswords}</strong>
